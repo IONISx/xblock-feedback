@@ -1,0 +1,54 @@
+/* CSS for FeedbackXBlock */
+
+
+fieldset {
+    padding:2em;
+}
+ul.notes-echelle {
+    margin:0;
+    padding:0;
+    font:.75em/1.2 Arial, Helvetica, sans-serif;
+}
+ul.notes-echelle li {
+    float:left;
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+
+ul.notes-echelle li label {
+    display:block;
+    text-align:center;
+    line-height:20px;
+    /* changer et mettre notre url */
+    background:url("http://babylon-design.com/exemples/jquery-stars/etoiles.gif") center top no-repeat;
+    cursor:pointer;
+}
+
+
+ul.notes-echelle li.note-off label {
+    background-position:center -60px;
+}
+ul.notes-echelle li.note-checked {
+    font-weight:bold;
+}
+
+
+
+ul.notes-echelle.js li {
+    min-width:20px;
+    min-height:20px;
+}
+ul.notes-echelle.js input {
+    position:absolute;
+    left:-999%;
+}
+ul.notes-echelle.js li.note-focus {
+    outline:1px dotted #000;
+}
+
+
+* html ul.notes-echelle.js li {
+    width:20px;
+    height:20px;
+}
