@@ -1,53 +1,30 @@
-<div class="feedback_block col-md-4" style="margin:20px; ">
-
-<p>
-    Bravo, vous &ecirc;tes arriv&eacute; &agrave; la fin de ce cours !
-</p>
-<fieldset id="feedback01">
-    <legend>Evaluez votre comp&eacute;tence :</legend>
-                    
-        <ul class="notes-echelle">
-            <li>
-                <label for="note21" title="Note&nbsp;: 1 sur 4">1</label>
-                <input type="radio" name="notesA" id="note21" value="1" />
-            </li>
-            <li>
-                <label for="note22" title="Note&nbsp;: 2 sur 4">2</label>
-                <input type="radio" name="notesA" id="note22" value="2" />
-            </li>
-            <li>
-                <label for="note23" title="Note&nbsp;: 3 sur 4">3</label>
-                <input type="radio" name="notesA" id="note23" value="3" />
-            </li>
-            <li>
-                <label for="note24" title="Note&nbsp;: 3 sur 4">4</label>
-                <input type="radio" name="notesA" id="note24" value="4" />
-            </li>
-        </ul>        
-</fieldset>
-<fieldset id="feedback02">
-    <legend>Evaluez la qualit&eacute; du cours :</legend>
-                    
-        <ul class="notes-echelle">
-            <li>
-                <label for="note31" title="Note&nbsp;: 1 sur 4">1</label>
-                <input type="radio" name="notesB" id="note31" value="1" />
-            </li>
-            <li>
-                <label for="note32" title="Note&nbsp;: 2 sur 4">2</label>
-                <input type="radio" name="notesB" id="note32" value="2" />
-            </li>
-            <li>
-                <label for="note33" title="Note&nbsp;: 3 sur 4">3</label>
-                <input type="radio" name="notesB" id="note33" value="3" />
-            </li>
-           <li>
-                <label for="note34" title="Note&nbsp;: 3 sur 4">4</label>
-                <input type="radio" name="notesB" id="note34" value="4" />
-            </li>
-         </ul>
-        
-</fieldset>
-
-<button type="button" class="btn btn-default navbar-right" >Retour au parcours</button>
+<div class="wrapper">
+    <div class="feedback">
+        <p>
+            Bravo, vous &ecirc;tes arriv&eacute; &agrave; la fin de ce cours !
+        </p>
+        <!--TODO : Replace table for a better responsivity-->
+        <table>
+            <tr>
+                <td>Evaluez votre comp&eacute;tence&nbsp; :</td>
+                <td class="rating skills">&nbsp;&nbsp;
+                    {% for i in stars %}
+                        <span href="#{{ i }}" class="star {% if i <= skills_score %}selected{% endif %}" value="{{ i }}"></span>
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr><td>&nbsp;</td><td></td></tr><tr>
+            <tr>
+                <td>Evaluez la qualit&eacute; du cours :</td>
+                <td class="rating course">&nbsp;&nbsp;
+                    {% for y in stars %}
+                       <span href="#{{ y }}" class="star {% if y <= course_score %}selected{% endif %}" value="{{ y }}"></span>
+                    {% endfor %}
+                </td>
+            </tr>
+        </table>
+        <section class="action">
+            <input  type="button" class="check" value="Retour au parcours"></input>
+        </section>
+    </div>
 </div>

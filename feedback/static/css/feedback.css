@@ -1,54 +1,45 @@
-/* CSS for FeedbackXBlock */
-
-
-fieldset {
-    padding:2em;
-}
-ul.notes-echelle {
-    margin:0;
-    padding:0;
-    font:.75em/1.2 Arial, Helvetica, sans-serif;
-}
-ul.notes-echelle li {
-    float:left;
-    margin:0;
-    padding:0;
-    list-style:none;
+.skills {
+    width: 100px;
 }
 
-ul.notes-echelle li label {
-    display:block;
-    text-align:center;
-    line-height:20px;
-    /* changer et mettre notre url */
-    background:url("http://babylon-design.com/exemples/jquery-stars/etoiles.gif") center top no-repeat;
-    cursor:pointer;
+.skills .star {
+    float: right;
 }
 
-
-ul.notes-echelle li.note-off label {
-    background-position:center -60px;
-}
-ul.notes-echelle li.note-checked {
-    font-weight:bold;
-}
-
-
-
-ul.notes-echelle.js li {
-    min-width:20px;
-    min-height:20px;
-}
-ul.notes-echelle.js input {
-    position:absolute;
-    left:-999%;
-}
-ul.notes-echelle.js li.note-focus {
-    outline:1px dotted #000;
+.skills .star:after {
+    content: '☆';
+    display: block;
+    height: 15px;
+    width: 15px;
 }
 
+.skills .star:hover:after,
+.skills .star.selected:after,
+.skills .star:hover ~ .star:after,
+.skills .star.selected ~ .star:after {
+    color: #3ea5ce;
+    cursor: pointer;
+}
 
-* html ul.notes-echelle.js li {
-    width:20px;
-    height:20px;
+.course {
+    width: 100px;
+}
+
+.course .star {
+    float: right;
+}
+
+.course .star:after {
+    content: '☆';
+    display: block;
+    height: 15px;
+    width: 15px;
+}
+
+.course .star:hover:after,
+.course .star.selected:after,
+.course .star:hover ~ .star:after,
+.course .star.selected ~ .star:after {
+    color: #3ea5ce;
+    cursor: pointer;
 }
