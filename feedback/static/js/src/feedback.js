@@ -2,43 +2,63 @@
 function FeedbackXBlock(runtime, element) {
     $(function () {
         
-        var skills_stars = $('.skills .star');
+        var skillsStars = $('.skills .star');
 
-        skills_stars.on('click', function () {
-            skills_stars.removeClass('selected');    
+        skillsStars.on('click', function () {
+            skillsStars.removeClass('selected');    
             $(this).addClass('selected');
 
             var handlerUrl = runtime.handlerUrl(element, 'update_scores');
-            var data = {'skills_score': $(this).attr("value")};
+            var value = $(this).data('value');
+            var data = {'skills_score': value};
+
 
             $.post(handlerUrl, JSON.stringify(data)).done(function(response) {
                 if (response.result === 'success') {
-                    console.log(JSON.stringify(data));
-                    // Reload the whole page :
-                    // window.location.reload(false);
+                    if (value > 2)
+                        $('.comment-feedback').hide();
+                    else 
+                        $('.comment-feedback').show();
                 } else {
-                     console.log("Error !");
+                     console.log('Error !');
                 }
             });
         });
 
-        var course_stars = $('.course .star');
+        var courseStars = $('.course .star');
         
-        course_stars.on('click', function () {
-            course_stars.removeClass('selected');    
+        courseStars.on('click', function () {
+            courseStars.removeClass('selected');    
             $(this).addClass('selected');
 
             var handlerUrl = runtime.handlerUrl(element, 'update_scores');
-            var data = {'course_score': $(this).attr("value")};
+            var value = $(this).data('value');
+            var data = {'course_score': value};
+
             $.post(handlerUrl, JSON.stringify(data)).done(function(response) {
                 if (response.result === 'success') {
-                    console.log(JSON.stringify(data));
-                    // Reload the whole page :
-                    // window.location.reload(false);
+                    if (value > 2)
+                        $('.comment-feedback').hide();
+                    else 
+                        $('.comment-feedback').show();
                 } else {
-                     console.log("Error !");
+                     console.log('Error !');
                 }
             });
         });
+
+        $('.back-to-parcours save-button').on('click', function () {
+            var handlerUrl = runtime.handlerUrl(element, 'save_feedback');
+            var value = $("feedback-comment").attr("data-value")
+            var data = {'comment': value};
+
+            $.post(handlerUrl, JSON.stringify(data)).done(function(response) {
+                if (response.result === 'success') {
+                    console.log(JSON.stringify(data));                      
+                } else {
+                     console.log('Error !');
+                }
+            });
+        }); 
     });
 }

@@ -1,7 +1,7 @@
 <div class="wrapper">
     <div class="feedback">
         <p>
-            Bravo, vous &ecirc;tes arriv&eacute; &agrave; la fin de ce cours !
+            F&eacute;licitation, vous &ecirc;tes arriv&eacute; &agrave; la fin de ce cours !
         </p>
         <!--TODO : Replace table for a better responsivity-->
         <table>
@@ -9,7 +9,7 @@
                 <td>Evaluez votre comp&eacute;tence&nbsp; :</td>
                 <td class="rating skills">&nbsp;&nbsp;
                     {% for i in stars %}
-                        <span href="#{{ i }}" class="star {% if i <= skills_score %}selected{% endif %}" value="{{ i }}"></span>
+                        <span href="#{{ i }}" class="star {% if i <= skills_score %}selected{% endif %}" data-value="{{ i }}"></span>
                     {% endfor %}
                 </td>
             </tr>
@@ -18,13 +18,19 @@
                 <td>Evaluez la qualit&eacute; du cours :</td>
                 <td class="rating course">&nbsp;&nbsp;
                     {% for y in stars %}
-                       <span href="#{{ y }}" class="star {% if y <= course_score %}selected{% endif %}" value="{{ y }}"></span>
+                       <span href="#{{ y }}" class="star {% if y <= course_score %}selected{% endif %}" data-value="{{ y }}"></span>
                     {% endfor %}
                 </td>
             </tr>
         </table>
-        <section class="action">
-            <input  type="button" class="check" value="Retour au parcours"></input>
-        </section>
+        <div class="comment-feedback" >
+            <p>Vous pouvez ajouter un commentaire :</p>
+            <textarea class="form-control" id="feedback-comment" rows="3">{{comment}}</textarea>
+        </div> 
+        <div class="xblock-actions">
+            <span class="action-item">
+                <a href="#" class="button action-primary back-to-parcours save-button">Retour au parcours</a>
+            </span>
+        </div>
     </div>
 </div>

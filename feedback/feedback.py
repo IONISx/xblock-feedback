@@ -4,7 +4,7 @@ import pkg_resources
 from django.template import Context, Template, Library
 
 from xblock.core import XBlock
-from xblock.fields import Scope, Integer, List
+from xblock.fields import Scope, Integer, List, String
 from xblock.fragment import Fragment
 
 class FeedbackXBlock(XBlock):
@@ -25,6 +25,11 @@ class FeedbackXBlock(XBlock):
         help="Score for auto-evaluated skills.",
     )
 
+    comment = String (
+        default="",
+        scope=Scope.user_state,
+        help="Comment available if a note is below 3.",
+    )
     '''
     Util functions
     '''
@@ -55,7 +60,8 @@ class FeedbackXBlock(XBlock):
         """
         context = {
             'skills_score': self.skills_score,
-            'course_score': self.course_score
+            'course_score': self.course_score,
+            'comment': self.comment
         }
 
         context['stars'] = [4,3,2,1]
@@ -87,6 +93,8 @@ class FeedbackXBlock(XBlock):
         The saving handler.
         TODO : Verify that all fields are saved and redirect to Parcours
         """
+        if data.get('comment'):
+            self.comment = data['comment']
 
         return {
             'result': 'success',
