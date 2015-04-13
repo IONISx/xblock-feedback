@@ -61,11 +61,9 @@ class FeedbackXBlock(XBlock):
         context = {
             'skills_score': self.skills_score,
             'course_score': self.course_score,
-            'comment': self.comment
+            'comment': self.comment,
         }
 
-        context['stars'] = [4,3,2,1]
-        
         html = self.render_template("static/html/feedback.html", context)
 
         frag = Fragment(html.format(self=self))
@@ -77,25 +75,27 @@ class FeedbackXBlock(XBlock):
     @XBlock.json_handler
     def update_scores(self, data, suffix=''):
         """
-        The saving handler.
+        The updating handler.
         """
         if data.get('skills_score'):
-            self.skills_score = data['skills_score'] 
-        else:
+            self.skills_score = data['skills_score']
+        if data.get('course_score'):
             self.course_score = data['course_score']
-
-        return {
-            'result': 'success',
-        }
-
-    def save_feedback(self, data, suffix=''):
-        """
-        The saving handler.
-        TODO : Verify that all fields are saved and redirect to Parcours
-        """
         if data.get('comment'):
             self.comment = data['comment']
 
+        return {
+            'result': 'success',
+            'skills_score': self.skills_score,
+            'course_score': self.course_score,
+            'comment': self.comment,
+        }
+
+    @XBlock.json_handler
+    def save_feedback(self, data, suffix=''):
+        """
+        The saving handler.
+        """
         return {
             'result': 'success',
         }

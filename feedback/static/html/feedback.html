@@ -7,29 +7,35 @@
         <table>
             <tr>
                 <td>Evaluez votre comp&eacute;tence&nbsp; :</td>
-                <td class="rating skills">&nbsp;&nbsp;
-                    {% for i in stars %}
-                        <span href="#{{ i }}" class="star {% if i <= skills_score %}selected{% endif %}" data-value="{{ i }}"></span>
-                    {% endfor %}
+                <td><div class="rating skills">
+                    &nbsp;&nbsp;
+                    <span class="star" id="skills4" data-value="4"></span>
+                    <span class="star" id="skills3" data-value="3"></span>
+                    <span class="star" id="skills2" data-value="2"></span>
+                    <span class="star" id="skills1" data-value="1"></span>
+                </div>
                 </td>
             </tr>
             <tr><td>&nbsp;</td><td></td></tr><tr>
             <tr>
                 <td>Evaluez la qualit&eacute; du cours :</td>
-                <td class="rating course">&nbsp;&nbsp;
-                    {% for y in stars %}
-                       <span href="#{{ y }}" class="star {% if y <= course_score %}selected{% endif %}" data-value="{{ y }}"></span>
-                    {% endfor %}
+                <td >
+                    <div class="rating course">&nbsp;&nbsp;
+                        <span class="star" id="course4" data-value="4"></span>
+                        <span class="star" id="course3" data-value="3"></span>
+                        <span class="star" id="course2" data-value="2"></span>
+                        <span class="star" id="course1" data-value="1"></span>
+                    </div>
                 </td>
             </tr>
         </table>
         <div class="comment-feedback" >
-            <p>Vous pouvez ajouter un commentaire :</p>
-            <textarea class="form-control" id="feedback-comment" rows="3">{{comment}}</textarea>
+            <p>Vous pouvez commenter votre notation :</p>
+            <textarea class="form-control" id="feedback-comment" rows="3"></textarea>
         </div> 
         <div class="xblock-actions">
             <span class="action-item">
-                <a href="#" class="button action-primary back-to-parcours save-button">Retour au parcours</a>
+                <a href="s/parcours/track/g" class="button action-primary back-to-parcours save-button">Retour au parcours</a>
             </span>
         </div>
     </div>
