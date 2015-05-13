@@ -59,8 +59,8 @@ class FeedbackXBlock(XBlock):
         when viewing courses.
         """
         context = {
-            'skills_score': self.skills_score,
-            'course_score': self.course_score,
+            'skillsScore': self.skills_score,
+            'courseScore': self.course_score,
             'comment': self.comment,
         }
 
@@ -77,17 +77,17 @@ class FeedbackXBlock(XBlock):
         """
         The updating handler.
         """
-        if data.get('skills_score'):
-            self.skills_score = data['skills_score']
-        if data.get('course_score'):
-            self.course_score = data['course_score']
+        if data.get('skillsScore'):
+            self.skills_score = data['skillsScore']
+        if data.get('courseScore'):
+            self.course_score = data['courseScore']
         if data.get('comment'):
             self.comment = data['comment']
 
         return {
             'result': 'success',
-            'skills_score': self.skills_score,
-            'course_score': self.course_score,
+            'skillsScore': self.skills_score,
+            'courseScore': self.course_score,
             'comment': self.comment,
         }
 
@@ -96,6 +96,19 @@ class FeedbackXBlock(XBlock):
         """
         The saving handler.
         """
+        if data.get('comment'):
+            self.comment = data['comment']
+ 
+        event_type = 'ionisx.learning.course.feedback'
+        context = {
+            'skillsScore': self.skills_score,
+            'courseScore': self.course_score,
+            'comment': self.comment,
+            'course_id': unicode(self.runtime.course_id),
+            'user_id': self.runtime.user_id
+        }
+
+        self.runtime.publish(self, event_type, context)
         return {
             'result': 'success',
         }
