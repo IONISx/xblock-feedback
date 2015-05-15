@@ -25,6 +25,12 @@ class FeedbackXBlock(XBlock):
         help="Score for auto-evaluated skills.",
     )
 
+    max_score = Integer(
+        default=4,
+        scope=Scope.content,
+        help="Max score / Number of stars.",
+    )
+
     comment = String (
         default="",
         scope=Scope.user_state,
@@ -100,14 +106,14 @@ class FeedbackXBlock(XBlock):
             self.comment = data['comment']
  
         event_type = 'ionisx.learning.course.feedback'
-        context = {
+        event_data = {
             'skills_score': self.skills_score,
             'course_score': self.course_score,
             'comment': self.comment,
-            'max_score': 4
+            'max_score': self.max_score,
         }
 
-        self.runtime.publish(self, event_type, context)
+        self.runtime.publish(self, event_type, event_data)
         return {
             'result': 'success',
         }
