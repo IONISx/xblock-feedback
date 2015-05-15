@@ -103,9 +103,7 @@ class FeedbackXBlock(XBlock):
         context = {
             'skillsScore': self.skills_score,
             'courseScore': self.course_score,
-            'comment': self.comment,
-            'course_id': unicode(self.runtime.course_id),
-            'user_id': self.runtime.user_id
+            'comment': self.comment
         }
 
         self.runtime.publish(self, event_type, context)
