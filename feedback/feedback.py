@@ -101,9 +101,10 @@ class FeedbackXBlock(XBlock):
  
         event_type = 'ionisx.learning.course.feedback'
         context = {
-            'skillsScore': self.skills_score,
-            'courseScore': self.course_score,
-            'comment': self.comment
+            'skills_score': self.skills_score,
+            'course_score': self.course_score,
+            'comment': self.comment,
+            'max_score': 4
         }
 
         self.runtime.publish(self, event_type, context)
