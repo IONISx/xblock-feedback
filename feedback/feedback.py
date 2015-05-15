@@ -36,6 +36,19 @@ class FeedbackXBlock(XBlock):
         scope=Scope.user_state,
         help="Comment available if a note is below 3.",
     )
+
+    post_url = String (
+        default="#", #"s/parcours/track/g",
+        scope=Scope.content,
+        help="Post action url.",
+    )
+
+    exit_label = String (
+        encoding="utf8",
+        default="Save and exit",
+        scope=Scope.content,
+        help="Label for button exit.",
+    )
     '''
     Util functions
     '''
@@ -68,6 +81,11 @@ class FeedbackXBlock(XBlock):
             'skillsScore': self.skills_score,
             'courseScore': self.course_score,
             'comment': self.comment,
+            'postUrl': self.post_url,
+            'maxScore': self.max_score,
+            'exitLabel': self.exit_label,
+            'userId': self.runtime.user_id,
+            'courseId': unicode(self.runtime.course_id),
         }
 
         html = self.render_template("static/html/feedback.html", context)
