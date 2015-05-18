@@ -7,14 +7,14 @@ function FeedbackXBlock(runtime, element) {
                 $('.comment-feedback', element).toggleClass('hidden',
                     hideComment(response.skillsScore, response.courseScore));
 
+                /* init stars */
+                nbStars = response.maxScoreRange;
+                skills = $('.rating .skills',element);
+                course = $('.rating .course',element);
+
+                /*init comment field*/
                 if (response.comment) {
                     $('#feedback-comment', element).val(response.comment);
-
-                    $('.skills .star', element).removeClass('selected');
-                    $('#skills' + response.skillsScore, element).addClass('selected');
-
-                    $('.course .star', element).removeClass('selected');
-                    $('#course' + response.courseScore, element).addClass('selected');
                 }
             }
             else {

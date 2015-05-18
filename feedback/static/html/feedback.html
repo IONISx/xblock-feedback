@@ -10,13 +10,12 @@
             <table>
                 <tr>
                     <td>Evaluez votre comp&eacute;tence&nbsp; :</td>
-                    <td><div class="rating skills">
-                        &nbsp;&nbsp;
-                        <span class="star" id="skills4" data-value="4"></span>
-                        <span class="star" id="skills3" data-value="3"></span>
-                        <span class="star" id="skills2" data-value="2"></span>
-                        <span class="star" id="skills1" data-value="1"></span>
-                    </div>
+                    <td>
+                        <div class="rating skills">
+                            {% for y in maxScoreRange %}
+                                {% if y  > 0 %}<span id="skills{{ y }}" class="star {% if y  <= skillsScore %}selected{% endif %}" data-value="{{ y }}"></span>{% endif %}
+                            {% endfor %}
+                        </div>
                     </td>
                 </tr>
                 <tr><td>&nbsp;</td><td></td></tr><tr>
@@ -24,10 +23,9 @@
                     <td>Evaluez la qualit&eacute; du cours :</td>
                     <td >
                         <div class="rating course">&nbsp;&nbsp;
-                            <span class="star" id="course4" data-value="4"></span>
-                            <span class="star" id="course3" data-value="3"></span>
-                            <span class="star" id="course2" data-value="2"></span>
-                            <span class="star" id="course1" data-value="1"></span>
+                            {% for y in maxScoreRange %}
+                                {% if y  > 0 %}<span id="course{{ y }}" class="star {% if y  <= courseScore %}selected{% endif %}" data-value="{{ y }}"></span>{% endif %}
+                            {% endfor %}
                         </div>
                     </td>
                 </tr>
