@@ -38,7 +38,7 @@ class FeedbackXBlock(XBlock):
     )
 
     post_url = String (
-        default="#", #"s/parcours/track/g",
+        default="#",
         scope=Scope.content,
         help="Post action url.",
     )
@@ -130,6 +130,7 @@ class FeedbackXBlock(XBlock):
             'result': 'success',
             'skillsScore': self.skills_score,
             'courseScore': self.course_score,
+            'maxScore': self.max_score,
             'comment': self.comment,
         }
 

@@ -23,8 +23,8 @@ function FeedbackXBlockStudent(runtime, element) {
         });
     }
 
-    function hideComment(skillsScore, courseScore) {
-        if ((skillsScore > 0 && skillsScore <= 2) || (courseScore > 0 && courseScore <= 2)) {
+    function hideComment(skillsScore, courseScore, maxScore) {
+        if ((skillsScore > 0 && skillsScore <= maxScore / 2) || (courseScore > 0 && courseScore <= maxScore /2)) {
             return false;
         }
         else {
@@ -48,7 +48,7 @@ function FeedbackXBlockStudent(runtime, element) {
             $.post(handlerUrl, JSON.stringify(data)).done(function (response) {
                 if (response.result === 'success') {
                     $('.comment-feedback', element).toggleClass('hidden',
-                        hideComment(response.skillsScore, response.courseScore));
+                        hideComment(response.skillsScore, response.courseScore, response.maxScore));
                 }
                 else {
                     console.log('Error !');
@@ -69,7 +69,7 @@ function FeedbackXBlockStudent(runtime, element) {
             $.post(handlerUrl, JSON.stringify(data)).done(function (response) {
                 if (response.result === 'success') {
                     $('.comment-feedback', element).toggleClass('hidden',
-                        hideComment(response.skillsScore, response.courseScore));
+                        hideComment(response.skillsScore, response.courseScore, response.maxScore));
                 }
                 else {
                     console.log('Error !');
