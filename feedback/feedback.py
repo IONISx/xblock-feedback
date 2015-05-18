@@ -82,6 +82,7 @@ class FeedbackXBlock(XBlock):
             'comment': self.comment,
             'postUrl': self.post_url,
             'maxScoreRange': list(reversed(range(self.max_score + 1))),
+            'maxScore': self.max_score,
             'exitLabel': self.exit_label,
             'userId': self.runtime.user_id,
             'courseId': unicode(self.runtime.course_id),

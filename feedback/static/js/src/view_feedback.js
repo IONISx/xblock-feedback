@@ -8,11 +8,6 @@ function FeedbackXBlockStudent(runtime, element) {
                 $('.comment-feedback', element).toggleClass('hidden',
                     hideComment(response.skillsScore, response.courseScore, response.maxScore));
 
-                /* init stars */
-                nbStars = response.maxScoreRange;
-                skills = $('.rating .skills', element);
-                course = $('.rating .course', element);
-
                 /*init comment field*/
                 if (response.comment) {
                     $('#feedback-comment', element).val(response.comment);
