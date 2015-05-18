@@ -4,39 +4,44 @@
             F&eacute;licitation, vous &ecirc;tes arriv&eacute; &agrave; la fin de ce cours !
         </p>
         <!--TODO : Replace table for a better responsivity-->
-        <table>
-            <tr>
-                <td>Evaluez votre comp&eacute;tence&nbsp; :</td>
-                <td><div class="rating skills">
-                    &nbsp;&nbsp;
-                    <span class="star" id="skills4" data-value="4"></span>
-                    <span class="star" id="skills3" data-value="3"></span>
-                    <span class="star" id="skills2" data-value="2"></span>
-                    <span class="star" id="skills1" data-value="1"></span>
-                </div>
-                </td>
-            </tr>
-            <tr><td>&nbsp;</td><td></td></tr><tr>
-            <tr>
-                <td>Evaluez la qualit&eacute; du cours :</td>
-                <td >
-                    <div class="rating course">&nbsp;&nbsp;
-                        <span class="star" id="course4" data-value="4"></span>
-                        <span class="star" id="course3" data-value="3"></span>
-                        <span class="star" id="course2" data-value="2"></span>
-                        <span class="star" id="course1" data-value="1"></span>
+        <form method="POST" action="{{ postUrl }}">
+            <input type="hidden" name="course_id" value="{{ courseId }}" />
+            <input type="hidden" name="user_id" value="{{ userId }}" />
+            <table>
+                <tr>
+                    <td>Evaluez votre comp&eacute;tence&nbsp; :</td>
+                    <td><div class="rating skills">
+                        &nbsp;&nbsp;
+                        <span class="star" id="skills4" data-value="4"></span>
+                        <span class="star" id="skills3" data-value="3"></span>
+                        <span class="star" id="skills2" data-value="2"></span>
+                        <span class="star" id="skills1" data-value="1"></span>
                     </div>
-                </td>
-            </tr>
-        </table>
-        <div class="comment-feedback" >
-            <p>Vous pouvez commenter votre notation :</p>
-            <textarea class="form-control" id="feedback-comment" rows="3"></textarea>
-        </div> 
-        <div class="xblock-actions">
-            <span class="action-item">
-                <a href="s/parcours/track/g" class="button action-primary back-to-parcours save-button">Retour au parcours</a>
-            </span>
-        </div>
+                    </td>
+                </tr>
+                <tr><td>&nbsp;</td><td></td></tr><tr>
+                <tr>
+                    <td>Evaluez la qualit&eacute; du cours :</td>
+                    <td >
+                        <div class="rating course">&nbsp;&nbsp;
+                            <span class="star" id="course4" data-value="4"></span>
+                            <span class="star" id="course3" data-value="3"></span>
+                            <span class="star" id="course2" data-value="2"></span>
+                            <span class="star" id="course1" data-value="1"></span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div class="comment-feedback" >
+                <p>Vous pouvez commenter votre notation :</p>
+                <textarea class="form-control" id="feedback-comment" rows="3"></textarea>
+            </div>
+            <div class="xblock-actions">
+                <span class="action-item">
+                    <button class="button action-primary back-to-parcours save-button"
+                    type="submit">{{ exitLabel }}</button>
+                </span>
+            </div>
+        </form>
     </div>
 </div>
