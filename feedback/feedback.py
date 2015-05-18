@@ -44,7 +44,6 @@ class FeedbackXBlock(XBlock):
     )
 
     exit_label = String (
-        encoding="utf8",
         default="Save and exit",
         scope=Scope.content,
         help="Label for button exit.",
@@ -74,7 +73,7 @@ class FeedbackXBlock(XBlock):
 
     def student_view(self, context=None):
         """
-        The primary view of the FeedbackXBlock, shown to students
+        The primary view of the XBlock, shown to students
         when viewing courses.
         """
         context = {
@@ -88,12 +87,31 @@ class FeedbackXBlock(XBlock):
             'courseId': unicode(self.runtime.course_id),
         }
 
-        html = self.render_template("static/html/feedback.html", context)
+        html = self.render_template("static/html/view_feedback.html", context)
 
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/feedback.css"))
-        frag.add_javascript(self.resource_string("static/js/src/feedback.js"))
-        frag.initialize_js('FeedbackXBlock')
+        frag.add_javascript(self.resource_string("static/js/src/view_feedback.js"))
+        frag.initialize_js('FeedbackXBlockStudent')
+        return frag
+
+    def studio_view(self, context=None):
+        """
+        The secondary view of the XBlock, shown to teachers
+        when editing the XBlock.
+        """
+        context = {
+            'postUrl': self.post_url,
+            'maxScore': self.max_score,
+            'exitLabel': self.exit_label,
+        }
+
+        html = self.render_template("static/html/edit_feedback.html", context)
+
+        frag = Fragment(html.format(self=self))
+        frag.add_css(self.resource_string("static/css/feedback.css"))
+        frag.add_javascript(self.resource_string("static/js/src/edit_feedback.js"))
+        frag.initialize_js('FeedbackXBlockStudio')
         return frag
 
     @XBlock.json_handler
@@ -132,6 +150,19 @@ class FeedbackXBlock(XBlock):
         }
 
         self.runtime.publish(self, event_type, event_data)
+        return {
+            'result': 'success',
+        }
+
+    @XBlock.json_handler
+    def studio_submit(self, data, suffix=''):
+        """
+        The saving handler.
+        """
+        self.exit_label = unicode(data['exitLabel'])
+        self.post_url = unicode(data['postUrl'])
+        self.max_score = unicode(data['maxScore'])
+
         return {
             'result': 'success',
         }

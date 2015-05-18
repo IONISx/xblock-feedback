@@ -1,0 +1,34 @@
+<div class="wrapper-comp-settings is-active editor-with-buttons" id="settings-tab">
+  <ul class="list-input settings-list">
+    <li class="field comp-setting-entry is-set">
+      <div class="wrapper-comp-setting">
+        <label class="label setting-label" for="exitLabel">Text for the save and quit button : </label><br>
+        <input class="input setting-input" type="text" id="exitLabel" value="{{exitLabel}}" required>
+      </div>
+      <span class="tip setting-help">Example: Save and exit.</span>
+    </li>
+    <li class="field comp-setting-entry is-set">
+      <div class="wrapper-comp-setting">
+        <label class="label setting-label" for="postUrl">Target for POST url action : </label><br>
+        <input class="label setting-label"  type="text" id="postUrl" value="{{ postUrl }}" required> 
+      </div>
+      <span class="tip setting-help">s/parcours/track/g</span>
+    </li>
+    <li class="field comp-setting-entry is-set">
+      <div class="wrapper-comp-setting">
+        <label class="label setting-label" for="maxScore">Max Score (number of stars) : </label><br>
+        <input class="label setting-label"  type="number" min='3' max='10' step='1' id="maxScore" value="{{ maxScore }}" required>
+      </div>
+    </li>
+  </ul>
+  <div class="xblock-actions">
+    <ul>
+      <li class="action-item">
+        <a href="#" class="button action-primary save-button">Save</a>
+      </li>
+      <li class="action-item">
+        <a href="#" class="button cancel-button">Cancel</a>
+      </li>
+    </ul>
+  </div>
+</div>

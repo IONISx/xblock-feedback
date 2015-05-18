@@ -1,5 +1,5 @@
 /* Javascript for FeedbackXBlock. */
-function FeedbackXBlock(runtime, element) {
+function FeedbackXBlockStudent(runtime, element) {
     function init() {
         var handlerUrl = runtime.handlerUrl(element, 'update_scores');
         $.post(handlerUrl, '{}').done(function (response) {
@@ -9,8 +9,8 @@ function FeedbackXBlock(runtime, element) {
 
                 /* init stars */
                 nbStars = response.maxScoreRange;
-                skills = $('.rating .skills',element);
-                course = $('.rating .course',element);
+                skills = $('.rating .skills', element);
+                course = $('.rating .course', element);
 
                 /*init comment field*/
                 if (response.comment) {
