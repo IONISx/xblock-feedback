@@ -1,11 +1,12 @@
 /* Javascript for FeedbackXBlock. */
 function FeedbackXBlockStudent(runtime, element) {
+
     function init() {
         var handlerUrl = runtime.handlerUrl(element, 'update_scores');
         $.post(handlerUrl, '{}').done(function (response) {
             if (response.result === 'success') {
                 $('.comment-feedback', element).toggleClass('hidden',
-                    hideComment(response.skillsScore, response.courseScore));
+                    hideComment(response.skillsScore, response.courseScore, response.maxScore));
 
                 /* init stars */
                 nbStars = response.maxScoreRange;
@@ -47,6 +48,7 @@ function FeedbackXBlockStudent(runtime, element) {
 
             $.post(handlerUrl, JSON.stringify(data)).done(function (response) {
                 if (response.result === 'success') {
+                    $('input[name=skills_score]').val(value);
                     $('.comment-feedback', element).toggleClass('hidden',
                         hideComment(response.skillsScore, response.courseScore, response.maxScore));
                 }
@@ -68,6 +70,7 @@ function FeedbackXBlockStudent(runtime, element) {
 
             $.post(handlerUrl, JSON.stringify(data)).done(function (response) {
                 if (response.result === 'success') {
+                    $('input[name=course_score]').val(value);
                     $('.comment-feedback', element).toggleClass('hidden',
                         hideComment(response.skillsScore, response.courseScore, response.maxScore));
                 }
