@@ -1,17 +1,11 @@
 /* Javascript for FeedbackXBlock. */
 function FeedbackXBlockStudent(runtime, element) {
-
     function init() {
         var handlerUrl = runtime.handlerUrl(element, 'update_scores');
         $.post(handlerUrl, '{}').done(function (response) {
             if (response.result === 'success') {
                 $('.comment-feedback', element).toggleClass('hidden',
                     hideComment(response.skillsScore, response.courseScore, response.maxScore));
-
-                /*init comment field*/
-                if (response.comment) {
-                    $('#feedback-comment', element).val(response.comment);
-                }
             }
             else {
                 console.log('Error !');
@@ -75,14 +69,19 @@ function FeedbackXBlockStudent(runtime, element) {
             });
         });
 
-        var comment = $('.back-to-parcours');
-        comment.on('click', function () {
+        var comment = $('#xblock-feedback');
+        comment.on('submit', function (e) {
+            e.preventDefault();
+            comment.off('submit');
+
             var handlerUrl = runtime.handlerUrl(element, 'save_feedback');
             var value = $('#feedback-comment', element).val();
             var data = { 'comment': value };
 
             $.post(handlerUrl, JSON.stringify(data)).done(function (response) {
                 if (response.result === 'success') {
+                    $('input[name=comment]').val(value);
+                    comment.submit();
                 }
                 else {
                     console.log('Error !');

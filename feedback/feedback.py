@@ -34,7 +34,7 @@ class FeedbackXBlock(XBlock):
     comment = String (
         default="",
         scope=Scope.user_state,
-        help="Comment available if a note is below 3.",
+        help="Comment available if a note is below or equal to half max_score.",
     )
 
     post_url = String (

@@ -4,7 +4,7 @@
             F&eacute;licitation, vous &ecirc;tes arriv&eacute; &agrave; la fin de ce cours !
         </p>
         <!--TODO : Replace table for a better responsivity-->
-        <form method="POST" action="{{ postUrl }}">
+        <form id="xblock-feedback" method="POST" action="{{ postUrl }}">
             <input type="hidden" name="course_id" value="{{ courseId }}" />
             <input type="hidden" name="user_id" value="{{ userId }}" />
             <input type="hidden" name="skills_score" value="{{ skillsScore }}" />
@@ -36,7 +36,7 @@
             </table>
             <div class="comment-feedback hidden" >
                 <p>Vous pouvez commenter votre notation :</p>
-                <textarea class="form-control" id="feedback-comment" rows="3" ></textarea>
+                <textarea class="form-control" id="feedback-comment" rows="3" >{{ comment }}</textarea>
             </div>
             <div class="xblock-actions">
                 <span class="action-item">
