@@ -4,7 +4,7 @@
             Félicitation, vous êtes arrivé à la fin de ce cours !
         </p>
         <!--TODO : Replace table for a better responsivity-->
-        <form id="xblock-feedback" method="POST" action="{{ postUrl }}">
+        <form id="xblock-feedback-form" method="POST" action="{{ postUrl }}">
             <input type="hidden" name="course_id" value="{{ courseId }}" />
             <input type="hidden" name="user_id" value="{{ userId }}" />
             <input type="hidden" name="skills_score" value="{{ skillsScore }}" />
@@ -17,7 +17,7 @@
                     <td>
                         <div class="rating skills">
                             {% for y in maxScoreRange %}
-                                {% if y  > 0 %}<span id="skills" class="star {% if y  <= skillsScore %}selected{% endif %}" data-value="{{ y }}"></span>{% endif %}
+                                {% if y  > 0 %}<span id="xblock-feedback-skills" class="star {% if y  <= skillsScore %}selected{% endif %}" data-value="{{ y }}"></span>{% endif %}
                             {% endfor %}
                         </div>
                     </td>
@@ -28,7 +28,7 @@
                     <td >
                         <div class="rating course">&nbsp;&nbsp;
                             {% for y in maxScoreRange %}
-                                {% if y  > 0 %}<span id="course" class="star {% if y  <= courseScore %}selected{% endif %}" data-value="{{ y }}"></span>{% endif %}
+                                {% if y  > 0 %}<span id="xblock-feedback-course" class="star {% if y  <= courseScore %}selected{% endif %}" data-value="{{ y }}"></span>{% endif %}
                             {% endfor %}
                         </div>
                     </td>
@@ -36,7 +36,7 @@
             </table>
             <div class="comment-feedback hidden" >
                 <p>Vous pouvez commenter votre notation :</p>
-                <textarea class="form-control" id="feedback-comment" rows="3" >{{ comment }}</textarea>
+                <textarea class="form-control" id="xblock-feedback-comment-ta" rows="3" >{{ comment }}</textarea>
             </div>
             <div class="xblock-actions">
                 <span class="action-item">

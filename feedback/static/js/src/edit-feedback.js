@@ -3,9 +3,9 @@ function FeedbackXBlockStudio(runtime, element) {
     $(element).find('.save-button').bind('click', function () {
         var handlerUrl = runtime.handlerUrl(element, 'studio_submit');
         var data = {
-            'exitLabel': $('#editFeedbackSettingsExitLabel', element).val(),
-            'postUrl': $('#editFeedbackSettingsPostUrl', element).val(),
-            'maxScore': $('#editFeedbackSettingsMaxScore', element).val(),
+            'exitLabel': $('#xblock-feedback-exit-label', element).val(),
+            'postUrl': $('#xblock-feedback-post-url', element).val(),
+            'maxScore': $('#xblock-feedback-max-score', element).val(),
         };
 
         runtime.notify('save', { state: 'start' });

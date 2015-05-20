@@ -64,13 +64,13 @@ function FeedbackXBlockStudent(runtime, element) {
             });
         });
 
-        var comment = $('#xblock-feedback');
+        var comment = $('#xblock-feedback-form');
         comment.on('submit', function (e) {
             e.preventDefault();
             comment.off('submit');
 
             var handlerUrl = runtime.handlerUrl(element, 'save_feedback');
-            var value = $('#feedback-comment', element).val();
+            var value = $('#xblock-feedback-comment-ta', element).val();
             var data = { 'comment': value };
 
             $.post(handlerUrl, JSON.stringify(data)).done(function (response) {

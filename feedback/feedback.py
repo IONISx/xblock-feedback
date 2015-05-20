@@ -88,11 +88,11 @@ class FeedbackXBlock(XBlock):
             'courseId': unicode(self.runtime.course_id),
         }
 
-        html = self.render_template("static/html/view_feedback.html", context)
+        html = self.render_template("static/html/view-feedback.html", context)
 
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/feedback.css"))
-        frag.add_javascript(self.resource_string("static/js/src/view_feedback.js"))
+        frag.add_javascript(self.resource_string("static/js/src/view-feedback.js"))
         frag.initialize_js('FeedbackXBlockStudent')
         return frag
 
@@ -107,11 +107,11 @@ class FeedbackXBlock(XBlock):
             'exitLabel': self.exit_label,
         }
 
-        html = self.render_template("static/html/edit_feedback.html", context)
+        html = self.render_template("static/html/edit-feedback.html", context)
 
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/feedback.css"))
-        frag.add_javascript(self.resource_string("static/js/src/edit_feedback.js"))
+        frag.add_javascript(self.resource_string("static/js/src/edit-feedback.js"))
         frag.initialize_js('FeedbackXBlockStudio')
         return frag
 
