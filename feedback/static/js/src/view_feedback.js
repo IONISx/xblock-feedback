@@ -14,12 +14,7 @@ function FeedbackXBlockStudent(runtime, element) {
     }
 
     function hideComment(skillsScore, courseScore, maxScore) {
-        if ((skillsScore > 0 && skillsScore <= maxScore / 2) || (courseScore > 0 && courseScore <= maxScore / 2)) {
-            return false;
-        }
-        else {
-            return true;
-        }
+        return !((skillsScore > 0 && skillsScore <= maxScore / 2) || (courseScore > 0 && courseScore <= maxScore / 2));
     }
 
     $(function () {

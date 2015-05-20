@@ -2,22 +2,21 @@
   <ul class="list-input settings-list">
     <li class="field comp-setting-entry is-set">
       <div class="wrapper-comp-setting">
-        <label class="label setting-label" for="exitLabel">Text for the save and quit button : </label><br>
-        <input class="input setting-input" type="text" id="exitLabel" value="{{exitLabel}}" required>
+        <label class="label setting-label" for="editFeedbackSettingsExitLabel">Text for the save and quit button : </label><br>
+        <input class="input setting-input" type="text" id="editFeedbackSettingsExitLabel" value="{{exitLabel}}" required>
       </div>
       <span class="tip setting-help">Example: Save and exit.</span>
     </li>
     <li class="field comp-setting-entry is-set">
       <div class="wrapper-comp-setting">
-        <label class="label setting-label" for="postUrl">Target for POST url action : </label><br>
-        <input class="label setting-input"  type="text" id="postUrl" value="{{ postUrl }}" required>
+        <label class="label setting-label" for="editFeedbackSettingsPostUrl">Target for POST url action : </label><br>
+        <input class="label setting-input"  type="text" id="editFeedbackSettingsPostUrl" value="{{ postUrl }}" required>
       </div>
-      <span class="tip setting-help">s/parcours/track/g</span>
     </li>
     <li class="field comp-setting-entry is-set">
       <div class="wrapper-comp-setting">
-        <label class="label setting-label" for="maxScore">Max Score (number of stars) : </label><br>
-        <input class="label setting-input" type="number" min='3' max='10' step='1' id="maxScore" value="{{ maxScore }}" required>
+        <label class="label setting-label" for="editFeedbackSettingsMaxScore">Max Score (number of stars) : </label><br>
+        <input class="label setting-input" type="number" min="3" max="10" step="1" id="editFeedbackSettingsMaxScore" value="{{ maxScore }}" required>
       </div>
     </li>
   </ul>

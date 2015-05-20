@@ -1,7 +1,7 @@
 <div class="wrapper">
     <div class="feedback">
         <p>
-            F&eacute;licitation, vous &ecirc;tes arriv&eacute; &agrave; la fin de ce cours !
+            Félicitation, vous êtes arrivé à la fin de ce cours !
         </p>
         <!--TODO : Replace table for a better responsivity-->
         <form id="xblock-feedback" method="POST" action="{{ postUrl }}">
@@ -13,22 +13,22 @@
             <input type="hidden" name="max_score" value="{{ maxScore }}" />
             <table>
                 <tr>
-                    <td>Evaluez votre comp&eacute;tence&nbsp; :</td>
+                    <td>Evaluez vos compétences :</td>
                     <td>
                         <div class="rating skills">
                             {% for y in maxScoreRange %}
-                                {% if y  > 0 %}<span id="skills{{ y }}" class="star {% if y  <= skillsScore %}selected{% endif %}" data-value="{{ y }}"></span>{% endif %}
+                                {% if y  > 0 %}<span id="skills" class="star {% if y  <= skillsScore %}selected{% endif %}" data-value="{{ y }}"></span>{% endif %}
                             {% endfor %}
                         </div>
                     </td>
                 </tr>
                 <tr><td>&nbsp;</td><td></td></tr><tr>
                 <tr>
-                    <td>Evaluez la qualit&eacute; du cours :</td>
+                    <td>Evaluez la qualité du cours :</td>
                     <td >
                         <div class="rating course">&nbsp;&nbsp;
                             {% for y in maxScoreRange %}
-                                {% if y  > 0 %}<span id="course{{ y }}" class="star {% if y  <= courseScore %}selected{% endif %}" data-value="{{ y }}"></span>{% endif %}
+                                {% if y  > 0 %}<span id="course" class="star {% if y  <= courseScore %}selected{% endif %}" data-value="{{ y }}"></span>{% endif %}
                             {% endfor %}
                         </div>
                     </td>
