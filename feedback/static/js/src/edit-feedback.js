@@ -6,6 +6,7 @@ function FeedbackXBlockStudio(runtime, element) {
             'exitLabel': $('#xblock-feedback-exit-label', element).val(),
             'postUrl': $('#xblock-feedback-post-url', element).val(),
             'maxScore': $('#xblock-feedback-max-score', element).val(),
+            'lock': $('#xblock-feedback-lock-when-voted option:selected').val()
         };
 
         runtime.notify('save', { state: 'start' });

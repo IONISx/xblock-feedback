@@ -19,6 +19,15 @@
         <input class="label setting-input" type="number" min="3" max="10" step="1" id="xblock-feedback-max-score" value="{{ maxScore }}" required>
       </div>
     </li>
+    <li class="field comp-setting-entry  is-set">
+      <div class="wrapper-comp-setting">
+        <label class="label setting-label" for="xblock-feedback-lock-when-voted">Lock the form when vote as been submited</label>
+        <select class="input setting-input" id="xblock-feedback-lock-when-voted" name="xblock-feedback-lock-when-voted">
+          <option value="True" {% if locked %}selected{% endif %}>True</option>
+          <option value="False" {% if not locked %}selected{% endif %}>False</option>
+        </select>
+      </div>
+    </li>
   </ul>
   <div class="xblock-actions">
     <ul>

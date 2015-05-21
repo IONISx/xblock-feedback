@@ -4,6 +4,13 @@
             Félicitation, vous êtes arrivé à la fin de ce cours !
         </p>
         <!--TODO : Replace table for a better responsivity-->
+        {% if isSubmited and lockedOption %}
+            <div >
+                Vous avez déjà voté : <br />
+                Vos compétences : {{ skillsScore }}/{{ maxScore }}<br />
+                Le cours : {{ courseScore }}/{{ maxScore }} <br />
+            </div>
+        {% else %}
         <form id="xblock-feedback-form" method="POST" action="{{ postUrl }}">
             <input type="hidden" name="course_id" value="{{ courseId }}" />
             <input type="hidden" name="user_id" value="{{ userId }}" />
@@ -45,5 +52,6 @@
                 </span>
             </div>
         </form>
+        {% endif %}
     </div>
 </div>

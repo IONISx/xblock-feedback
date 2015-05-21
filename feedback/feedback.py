@@ -1,17 +1,11 @@
-"""TO-DO: Write a description of what this XBlock is."""
-
 import pkg_resources
 from django.template import Context, Template, Library
 
 from xblock.core import XBlock
-from xblock.fields import Scope, Integer, List, String
+from xblock.fields import Scope, Integer, List, String, Boolean
 from xblock.fragment import Fragment
 
 class FeedbackXBlock(XBlock):
-
-    """
-    TO-DO: document what your XBlock does.
-    """
 
     skills_score = Integer(
         default=0,
@@ -47,6 +41,18 @@ class FeedbackXBlock(XBlock):
         default="Save and exit",
         scope=Scope.content,
         help="Label for button exit.",
+    )
+
+    submited = Boolean (
+        default="False",
+        scope=Scope.user_state,
+        help="True when form already fulfilled.",
+    )
+
+    locked_option = Boolean (
+        default="False",
+        scope=Scope.content,
+        help="True when form already fulfilled.",
     )
     '''
     Util functions
@@ -86,6 +92,8 @@ class FeedbackXBlock(XBlock):
             'exitLabel': self.exit_label,
             'userId': self.runtime.user_id,
             'courseId': unicode(self.runtime.course_id),
+            'isSubmited': self.submited,
+            'lockedOption': self.locked_option
         }
 
         html = self.render_template("static/html/view-feedback.html", context)
@@ -105,7 +113,9 @@ class FeedbackXBlock(XBlock):
             'postUrl': self.post_url,
             'maxScore': self.max_score,
             'exitLabel': self.exit_label,
+            'locked': self.locked_option,
         }
+
 
         html = self.render_template("static/html/edit-feedback.html", context)
 
@@ -140,18 +150,19 @@ class FeedbackXBlock(XBlock):
         """
         The saving handler.
         """
-        if data.get('comment'):
-            self.comment = data['comment']
- 
-        event_type = 'ionisx.learning.course.feedback'
-        event_data = {
-            'skills_score': self.skills_score,
-            'course_score': self.course_score,
-            'comment': self.comment,
-            'max_score': self.max_score,
-        }
+        if not self.submited:
+            if data.get('comment'):
+                self.comment = data['comment']
 
-        self.runtime.publish(self, event_type, event_data)
+            event_type = 'ionisx.learning.course.feedback'
+            event_data = {
+                'skills_score': self.skills_score,
+                'course_score': self.course_score,
+                'comment': self.comment,
+                'max_score': self.max_score,
+            }
+            self.submited  = True
+            self.runtime.publish(self, event_type, event_data)
         return {
             'result': 'success',
         }
@@ -162,8 +173,9 @@ class FeedbackXBlock(XBlock):
         The saving handler.
         """
         self.exit_label = unicode(data['exitLabel'])
-        self.post_url = unicode(data['postUrl'])
+        self.post_url = data['postUrl']
         self.max_score = unicode(data['maxScore'])
+        self.locked_option = data['lock']
 
         return {
             'result': 'success',
