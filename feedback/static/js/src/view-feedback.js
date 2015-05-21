@@ -83,5 +83,10 @@ function FeedbackXBlockStudent(runtime, element) {
                 }
             });
         });
+
+        var quit = $('.xblock-actions-when-locked-save-button');
+        quit.on('click', function (e) {
+            window.location.href = $('input[name=post_url]').val();
+        });
     });
 }

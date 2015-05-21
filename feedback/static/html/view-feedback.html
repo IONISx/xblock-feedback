@@ -9,6 +9,12 @@
                 Vous avez déjà voté : <br />
                 Vos compétences : {{ skillsScore }}/{{ maxScore }}<br />
                 Le cours : {{ courseScore }}/{{ maxScore }} <br />
+                <div class="xblock-actions-when-locked">
+                <input type="hidden" name="post_url" value="{{ postUrl }}" />
+                <span class="action-item">
+                    <button class="button action-primary back-to-parcours save-button xblock-actions-when-locked-save-button">Retour</button>
+                </span>
+            </div>
             </div>
         {% else %}
         <form id="xblock-feedback-form" method="POST" action="{{ postUrl }}">
