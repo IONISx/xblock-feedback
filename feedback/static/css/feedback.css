@@ -1,3 +1,7 @@
+.rating {
+    vertical-align: middle;
+}
+
 .skills .star {
     float: right;
 }
