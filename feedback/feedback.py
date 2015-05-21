@@ -150,19 +150,18 @@ class FeedbackXBlock(XBlock):
         """
         The saving handler.
         """
-        if not self.submited:
-            if data.get('comment'):
-                self.comment = data['comment']
+        if data.get('comment'):
+            self.comment = data['comment']
 
-            event_type = 'ionisx.learning.course.feedback'
-            event_data = {
-                'skills_score': self.skills_score,
-                'course_score': self.course_score,
-                'comment': self.comment,
-                'max_score': self.max_score,
-            }
-            self.submited  = True
-            self.runtime.publish(self, event_type, event_data)
+        self.submited  = True
+        event_type = 'ionisx.learning.course.feedback'
+        event_data = {
+            'skills_score': self.skills_score,
+            'course_score': self.course_score,
+            'comment': unicode(self.comment),
+            'max_score': self.max_score,
+        }
+        self.runtime.publish(self, event_type, event_data)
         return {
             'result': 'success',
         }
