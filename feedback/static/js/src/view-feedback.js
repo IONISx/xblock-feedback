@@ -4,8 +4,12 @@ function FeedbackXBlockStudent(runtime, element) {
         var handlerUrl = runtime.handlerUrl(element, 'update_scores');
         $.post(handlerUrl, '{}').done(function (response) {
             if (response.result === 'success') {
+                var skills = response['skills_score'];
+                var course = response['course_score'];
+                var max = response['max_score'];
+
                 $('.comment-feedback', element).toggleClass('hidden',
-                    hideComment(response['skills_score'], response['course_score'], response['max_score']));
+                    hideComment(skills, course, max));
             }
             else {
                 console.log('Error !');
@@ -37,8 +41,12 @@ function FeedbackXBlockStudent(runtime, element) {
             $.post(handlerUrl, JSON.stringify(data)).done(function (response) {
                 if (response.result === 'success') {
                     $('input[name=skills_score]').val(value);
+                    var skills = response['skills_score'];
+                    var course = response['course_score'];
+                    var max = response['max_score'];
+
                     $('.comment-feedback', element).toggleClass('hidden',
-                        hideComment(response['skills_score'], response['course_score'], response['max_score']));
+                        hideComment(skills, course, max));
                 }
                 else {
                     console.log('Error !');
@@ -63,8 +71,12 @@ function FeedbackXBlockStudent(runtime, element) {
             $.post(handlerUrl, JSON.stringify(data)).done(function (response) {
                 if (response.result === 'success') {
                     $('input[name=course_score]').val(value);
+                    var skills = response['skills_score'];
+                    var course = response['course_score'];
+                    var max = response['max_score'];
+
                     $('.comment-feedback', element).toggleClass('hidden',
-                        hideComment(response['skills_score'], response['course_score'], response['max_score']));
+                        hideComment(skills, course, max));
                 }
                 else {
                     console.log('Error !');
