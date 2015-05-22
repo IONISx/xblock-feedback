@@ -5,7 +5,10 @@
     "noarg": true,
     "undef": true,
     "unused": true,
-
+    "exported": [
+        "FeedbackXBlockStudent",
+        "FeedbackXBlockStudio"
+    ],
     "eqnull": true,
     "node": true,
     "browser": true,
