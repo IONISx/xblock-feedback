@@ -12,10 +12,9 @@ function FeedbackXBlockStudent(runtime, element) {
                     hideComment(skills, course, max));
             }
             else {
-                console.log('Error !');
                 runtime.notify('error',  {
-                    title: 'Error : xblock.ionisx.feedback.update_scores failed.',
-                    message: 'An error occured while fulfilling the feedback form !'
+                    title: 'Error : Init failed.',
+                    message: 'An error occured while loading the feedback form !'
                 });
             }
         });
@@ -49,9 +48,8 @@ function FeedbackXBlockStudent(runtime, element) {
                         hideComment(skills, course, max));
                 }
                 else {
-                    console.log('Error !');
                     runtime.notify('error',  {
-                        title: 'Error : xblock.ionisx.feedback.update_scores failed.',
+                        title: 'Error : Update failed.',
                         message: 'An error occured while saving skills score !'
                     });
                 }
@@ -79,9 +77,8 @@ function FeedbackXBlockStudent(runtime, element) {
                         hideComment(skills, course, max));
                 }
                 else {
-                    console.log('Error !');
                     runtime.notify('error',  {
-                        title: 'Error : xblock.ionisx.feedback.update_scores failed.',
+                        title: 'Error : Update failed.',
                         message: 'An error occured while saving course score !'
                     });
                 }
@@ -103,9 +100,8 @@ function FeedbackXBlockStudent(runtime, element) {
                     comment.submit();
                 }
                 else {
-                    console.log('Error !');
                     runtime.notify('error',  {
-                        title: 'Error : xblock.ionisx.feedback.save_feedback failed.',
+                        title: 'Error : Save failed.',
                         message: 'An error occured while saving feedback !'
                     });
                 }
