@@ -1,57 +1,49 @@
 <div class="wrapper">
     <div class="feedback">
         <!--TODO : Replace table for a better responsivity-->
-        {% if isSubmited and lockedOption %}
+        {% if is_submited and is_locked %}
             <div >
-                {{ lockedIntroLabel }} <br />
-                {{ lockedSkillsLabel }} {{ skillsScore }}/{{ maxScore }}<br />
-                {{ lockedCourseLabel }} {{ courseScore }}/{{ maxScore }} <br />
-                {{ lockedCommentLabel }}  "<i>{{ comment }}</i>" <br />
-                <div class="xblock-actions-when-locked">
-                <input type="hidden" name="post_url" value="{{ postUrl }}" />
-                <span class="action-item">
-                    <button class="button action-primary back-to-parcours save-button
-                    xblock-actions-when-locked-save-button">{{ lockedExitLabel }}</button>
-                </span>
-            </div>
+                Vous avez déjà voté ! <br />
+                Vos compétences : {{ skills_score }}/{{ max_score }}<br />
+                Ce cours : {{ course_score }}/{{ max_score }} <br />
             </div>
         {% else %}
         <p>
-            {{ introLabel }}
+            Félicitation, vous avez terminé ce cours !
         </p>
-        <form id="xblock-feedback-form" method="POST" action="{{ postUrl }}">
-            <input type="hidden" name="course_id" value="{{ courseId }}" />
-            <input type="hidden" name="user_id" value="{{ userId }}" />
-            <input type="hidden" name="skills_score" value="{{ skillsScore }}" />
-            <input type="hidden" name="course_score" value="{{ courseScore }}" />
+        <form id="xblock-feedback-form" method="POST" action="{{ post_url }}">
+            <input type="hidden" name="course_id" value="{{ course_id }}" />
+            <input type="hidden" name="user_id" value="{{ user_id }}" />
+            <input type="hidden" name="skills_score" value="{{ skills_score }}" />
+            <input type="hidden" name="course_score" value="{{ course_score }}" />
             <input type="hidden" name="comment" value="{{ comment }}" />
-            <input type="hidden" name="max_score" value="{{ maxScore }}" />
+            <input type="hidden" name="max_score" value="{{ max_score }}" />
             <div>
-                <span style="display: inline-block; width: 210px">{{ skillsLabel }} :</span >
+                <span style="display: inline-block; width: 210px">Evaluez vos compétences :</span >
                 <div class="rating skills" style="display: inline-block;" >
-                    {% for y in maxScoreRange %}
-                        {% if y  > 0 %}<span id="xblock-feedback-skills" class="star {% if y  <= skillsScore %}selected{% endif %}"
+                    {% for y in max_score_range %}
+                        {% if y  > 0 %}<span id="xblock-feedback-skills" class="star {% if y  <= skills_score %}selected{% endif %}"
                         data-value="{{ y }}"></span>{% endif %}
                     {% endfor %}
                 </div>
             </div>
             <div>
-                <span style="display: inline-block; width: 210px">{{ courseLabel }} :</span>
+                <span style="display: inline-block; width: 210px">Evaluez la qualité du cours :</span>
                 <div class="rating course" style="display: inline-block;" >
-                    {% for y in maxScoreRange %}
-                        {% if y  > 0 %}<span id="xblock-feedback-course" class="star {% if y  <= courseScore %}selected{% endif %}"
+                    {% for y in max_score_range %}
+                        {% if y  > 0 %}<span id="xblock-feedback-course" class="star {% if y  <= course_score %}selected{% endif %}"
                         data-value="{{ y }}"></span>{% endif %}
                     {% endfor %}
                 </div>
             </div>
             <div class="comment-feedback hidden" >
-                <p>{{ commentLabel }}</p>
+                <p>Vous pouvez ajouter un commentaire : </p>
                 <textarea class="form-control" id="xblock-feedback-comment-ta" rows="3" >{{ comment }}</textarea>
             </div>
             <div class="xblock-actions">
                 <span class="action-item">
                     <button class="button action-primary back-to-parcours save-button"
-                    type="submit">{{ exitLabel }}</button>
+                    type="submit">{{ exit_label }}</button>
                 </span>
             </div>
         </form>

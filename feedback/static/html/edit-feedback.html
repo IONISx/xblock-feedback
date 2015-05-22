@@ -2,96 +2,32 @@
   <ul class="list-input settings-list">
     <li class="field comp-setting-entry is-set">
       <div class="wrapper-comp-setting">
-        <label class="label setting-label" for="xblock-feedback-intro-label">Introduction text : </label><br>
-        <input class="input setting-input" type="text" id="xblock-feedback-intro-label" value="{{ introLabel }}" required>
-      </div>
-      <span class="tip setting-help">Example: Congratulations ! You're at the end of this course.</span>
-    </li>
-    <li class="field comp-setting-entry is-set">
-      <div class="wrapper-comp-setting">
-        <label class="label setting-label" for="xblock-feedback-skills-label">Text for the skills note : </label><br>
-        <input class="input setting-input" type="text" id="xblock-feedback-skills-label" value="{{ skillsLabel }}" required>
-      </div>
-      <span class="tip setting-help">Example: Note your skills</span>
-    </li>
-    <li class="field comp-setting-entry is-set">
-      <div class="wrapper-comp-setting">
-        <label class="label setting-label" for="xblock-feedback-course-label">Text for the course note : </label><br>
-        <input class="input setting-input" type="text" id="xblock-feedback-course-label" value="{{ courseLabel }}" required>
-      </div>
-      <span class="tip setting-help">Example: Note this course</span>
-    </li>
-    <li class="field comp-setting-entry is-set">
-      <div class="wrapper-comp-setting">
-        <label class="label setting-label" for="xblock-feedback-comment-label">Text for the comment : </label><br>
-        <input class="input setting-input" type="text" id="xblock-feedback-comment-label" value="{{ commentLabel }}" required>
-      </div>
-      <span class="tip setting-help">Example: You can comment your notation.</span>
-    </li>
-    <li class="field comp-setting-entry is-set">
-      <div class="wrapper-comp-setting">
         <label class="label setting-label" for="xblock-feedback-exit-label">Text for the save and quit button : </label><br>
-        <input class="input setting-input" type="text" id="xblock-feedback-exit-label" value="{{ exitLabel }}" required>
+        <input class="input setting-input" type="text" id="xblock-feedback-exit-label" value="{{ exit_label }}" required>
       </div>
       <span class="tip setting-help">Example: Save and exit.</span>
     </li>
     <li class="field comp-setting-entry is-set">
       <div class="wrapper-comp-setting">
         <label class="label setting-label" for="xblock-feedback-post-url">Target for POST url action : </label><br>
-        <input class="label setting-input"  type="text" id="xblock-feedback-post-url" value="{{ postUrl }}" required>
+        <input class="label setting-input"  type="text" id="xblock-feedback-post-url" value="{{ post_url }}" required>
       </div>
     </li>
     <li class="field comp-setting-entry is-set">
       <div class="wrapper-comp-setting">
         <label class="label setting-label" for="xblock-feedback-max-score">Max Score (number of stars) : </label><br>
-        <input class="label setting-input" type="number" min="3" max="10" step="1" id="xblock-feedback-max-score" value="{{ maxScore }}" required>
+        <input class="label setting-input" type="number" min="3" max="10" step="1" id="xblock-feedback-max-score" value="{{ max_score }}" required>
       </div>
     </li>
     <li class="field comp-setting-entry  is-set">
       <div class="wrapper-comp-setting">
         <label class="label setting-label" for="xblock-feedback-lock-when-voted">Lock the form when vote as been submited</label>
         <select class="input setting-input" id="xblock-feedback-lock-when-voted" name="xblock-feedback-lock-when-voted">
-          <option value="True" {% if locked %}selected{% endif %}>True</option>
-          <option value="False" {% if not locked %}selected{% endif %}>False</option>
+          <option value="True" {% if is_locked %}selected{% endif %}>True</option>
+          <option value="False" {% if not is_locked %}selected{% endif %}>False</option>
         </select>
       </div>
     </li>
-    <li class="field comp-setting-entry is-set">
-      <div class="wrapper-comp-setting">
-        <label class="label setting-label" for="xblock-feedback-locked-intro-label">Locked introduction text : </label><br>
-        <input class="input setting-input" type="text" id="xblock-feedback-locked-intro-label" value="{{ lockedIntroLabel }}" required>
-      </div>
-      <span class="tip setting-help">Example: You have already voted</span>
-    </li>
-    <li class="field comp-setting-entry is-set">
-      <div class="wrapper-comp-setting">
-        <label class="label setting-label" for="xblock-feedback-locked-skills-label">Text for the skills note : </label><br>
-        <input class="input setting-input" type="text" id="xblock-feedback-locked-skills-label" value="{{ lockedSkillsLabel }}" required>
-      </div>
-      <span class="tip setting-help">Example: Your skills</span>
-    </li>
-    <li class="field comp-setting-entry is-set">
-      <div class="wrapper-comp-setting">
-        <label class="label setting-label" for="xblock-feedback-locked-course-label">Text for the course note : </label><br>
-        <input class="input setting-input" type="text" id="xblock-feedback-locked-course-label" value="{{ lockedCourseLabel }}" required>
-      </div>
-      <span class="tip setting-help">Example: This course</span>
-    </li>
-    <li class="field comp-setting-entry is-set">
-      <div class="wrapper-comp-setting">
-        <label class="label setting-label" for="xblock-feedback-locked-comment-label">Text for the comment : </label><br>
-        <input class="input setting-input" type="text" id="xblock-feedback-locked-comment-label" value="{{ lockedCommentLabel }}" required>
-      </div>
-      <span class="tip setting-help">Example: Your comment.</span>
-    </li>
-    <li class="field comp-setting-entry is-set">
-      <div class="wrapper-comp-setting">
-        <label class="label setting-label" for="xblock-feedback-locked-exit-label">Text for the save and quit button : </label><br>
-        <input class="input setting-input" type="text" id="xblock-feedback-locked-exit-label" value="{{ lockedExitLabel }}" required>
-      </div>
-      <span class="tip setting-help">Example: Save and exit.</span>
-    </li>
-
   </ul>
   <div class="xblock-actions">
     <ul>

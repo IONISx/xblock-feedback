@@ -5,10 +5,14 @@ function FeedbackXBlockStudent(runtime, element) {
         $.post(handlerUrl, '{}').done(function (response) {
             if (response.result === 'success') {
                 $('.comment-feedback', element).toggleClass('hidden',
-                    hideComment(response.skillsScore, response.courseScore, response.maxScore));
+                    hideComment(response['skills_score'], response['course_score'], response['max_score']));
             }
             else {
                 console.log('Error !');
+                runtime.notify('error',  {
+                    title: 'Error : xblock.ionisx.feedback.update_scores failed.',
+                    message: 'An error occured while fulfilling the feedback form !'
+                });
             }
         });
     }
@@ -28,16 +32,20 @@ function FeedbackXBlockStudent(runtime, element) {
 
             var handlerUrl = runtime.handlerUrl(element, 'update_scores');
             var value = $(this).data('value');
-            var data = { 'skillsScore': value };
+            var data = { skillsScore: value };
 
             $.post(handlerUrl, JSON.stringify(data)).done(function (response) {
                 if (response.result === 'success') {
                     $('input[name=skills_score]').val(value);
                     $('.comment-feedback', element).toggleClass('hidden',
-                        hideComment(response.skillsScore, response.courseScore, response.maxScore));
+                        hideComment(response['skills_score'], response['course_score'], response['max_score']));
                 }
                 else {
                     console.log('Error !');
+                    runtime.notify('error',  {
+                        title: 'Error : xblock.ionisx.feedback.update_scores failed.',
+                        message: 'An error occured while saving skills score !'
+                    });
                 }
             });
         });
@@ -50,16 +58,20 @@ function FeedbackXBlockStudent(runtime, element) {
 
             var handlerUrl = runtime.handlerUrl(element, 'update_scores');
             var value = $(this).data('value');
-            var data = { 'courseScore': value };
+            var data = { courseScore: value };
 
             $.post(handlerUrl, JSON.stringify(data)).done(function (response) {
                 if (response.result === 'success') {
                     $('input[name=course_score]').val(value);
                     $('.comment-feedback', element).toggleClass('hidden',
-                        hideComment(response.skillsScore, response.courseScore, response.maxScore));
+                        hideComment(response['skills_score'], response['course_score'], response['max_score']));
                 }
                 else {
                     console.log('Error !');
+                    runtime.notify('error',  {
+                        title: 'Error : xblock.ionisx.feedback.update_scores failed.',
+                        message: 'An error occured while saving course score !'
+                    });
                 }
             });
         });
@@ -71,7 +83,7 @@ function FeedbackXBlockStudent(runtime, element) {
 
             var handlerUrl = runtime.handlerUrl(element, 'save_feedback');
             var value = $('#xblock-feedback-comment-ta', element).val();
-            var data = { 'comment': value };
+            var data = { comment: value };
 
             $.post(handlerUrl, JSON.stringify(data)).done(function (response) {
                 if (response.result === 'success') {
@@ -80,13 +92,12 @@ function FeedbackXBlockStudent(runtime, element) {
                 }
                 else {
                     console.log('Error !');
+                    runtime.notify('error',  {
+                        title: 'Error : xblock.ionisx.feedback.save_feedback failed.',
+                        message: 'An error occured while saving feedback !'
+                    });
                 }
             });
-        });
-
-        var quit = $('.xblock-actions-when-locked-save-button');
-        quit.on('click', function (e) {
-            window.location.href = $('input[name=post_url]').val();
         });
     });
 }
