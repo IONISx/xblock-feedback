@@ -3,14 +3,15 @@
         <!--TODO : Replace table for a better responsivity-->
         {% if isSubmited and lockedOption %}
             <div >
-                {{ lokedIntroLabel }} <br />
-                {{ lokedSkillsLabel }} {{ skillsScore }}/{{ maxScore }}<br />
-                {{ lokedCourseLabel }} {{ courseScore }}/{{ maxScore }} <br />
+                {{ lockedIntroLabel }} <br />
+                {{ lockedSkillsLabel }} {{ skillsScore }}/{{ maxScore }}<br />
+                {{ lockedCourseLabel }} {{ courseScore }}/{{ maxScore }} <br />
                 {{ lockedCommentLabel }} {{ comment }} <br />
                 <div class="xblock-actions-when-locked">
                 <input type="hidden" name="post_url" value="{{ postUrl }}" />
                 <span class="action-item">
-                    <button class="button action-primary back-to-parcours save-button xblock-actions-when-locked-save-button">Retour</button>
+                    <button class="button action-primary back-to-parcours save-button
+                    xblock-actions-when-locked-save-button">{{ lockedExitLabel }}</button>
                 </span>
             </div>
             </div>

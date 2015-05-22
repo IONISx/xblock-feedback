@@ -6,7 +6,16 @@ function FeedbackXBlockStudio(runtime, element) {
             'exitLabel': $('#xblock-feedback-exit-label', element).val(),
             'postUrl': $('#xblock-feedback-post-url', element).val(),
             'maxScore': $('#xblock-feedback-max-score', element).val(),
-            'lock': $('#xblock-feedback-lock-when-voted option:selected').val()
+            'lock': $('#xblock-feedback-lock-when-voted option:selected').val(),
+            'introLabel': $('#xblock-feedback-intro-label', element).val(),
+            'skillsLabel': $('#xblock-feedback-skills-label', element).val(),
+            'courseLabel': $('#xblock-feedback-course-label', element).val(),
+            'commentLabel': $('#xblock-feedback-comment-label', element).val(),
+            'lockedIntroLabel': $('#xblock-feedback-locked-intro-label', element).val(),
+            'lockedSkillsLabel': $('#xblock-feedback-locked-skills-label', element).val(),
+            'lockedCourseLabel': $('#xblock-feedback-locked-course-label', element).val(),
+            'lockedCommentLabel': $('#xblock-feedback-locked-comment-label', element).val(),
+            'lockedExitLabel': $('#xblock-feedback-locked-exit-label', element).val()
         };
 
         runtime.notify('save', { state: 'start' });
