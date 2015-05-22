@@ -37,6 +37,54 @@ class FeedbackXBlock(XBlock):
         help="Post action url.",
     )
 
+    intro_label = String (
+        default="Congratulation, you are at the end of this course !",
+        scope=Scope.content,
+        help="Introduction text for feedback.",
+    )
+
+    skills_label = String (
+        default="Note your skills",
+        scope=Scope.content,
+        help="Text in label for skills vote.",
+    )
+
+    comment_label = String (
+        default="You can comment those notes :",
+        scope=Scope.content,
+        help="Text in label for comment vote.",
+    )
+
+    course_label = String (
+        default="Note this course",
+        scope=Scope.content,
+        help="Text in label for course vote.",
+    )
+
+    locked_intro_label = String (
+        default="You have already voted :",
+        scope=Scope.content,
+        help="Introduction text for feedback when locked.",
+    )
+
+    locked_skills_label = String (
+        default=unicode("Your skills :"),
+        scope=Scope.content,
+        help="Text in label for skills vote when locked.",
+    )
+
+    locked_comment_label = String (
+        default="Your comment :",
+        scope=Scope.content,
+        help="Text in label for comment vote.",
+    )
+
+    locked_course_label = String (
+        default=unicode("this course : "),
+        scope=Scope.content,
+        help="Text in label for course vote when locked.",
+    )
+
     exit_label = String (
         default="Save and exit",
         scope=Scope.content,
@@ -93,7 +141,15 @@ class FeedbackXBlock(XBlock):
             'userId': self.runtime.user_id,
             'courseId': unicode(self.runtime.course_id),
             'isSubmited': self.submited,
-            'lockedOption': self.locked_option
+            'lockedOption': self.locked_option,
+            'introLabel': self.intro_label,
+            'skillsLabel': self.skills_label,
+            'courseLabel': self.course_label,
+            'commentLabel': self.comment_label,
+            'lockedSkillsLabel': self.locked_skills_label,
+            'lockedCourseLabel': self.locked_course_label,
+            'lockedIntroLabel': self.locked_intro_label,
+            'lockedCommentLabel': self.locked_comment_label,
         }
 
         html = self.render_template("static/html/view-feedback.html", context)
@@ -114,6 +170,14 @@ class FeedbackXBlock(XBlock):
             'maxScore': self.max_score,
             'exitLabel': self.exit_label,
             'locked': self.locked_option,
+            'introLabel': self.intro_label,
+            'skillsLabel': self.skills_label,
+            'courseLabel': self.course_label,
+            'commentLabel': self.comment_label,
+            'lockedSkillsLabel': self.locked_skills_label,
+            'lockedCourseLabel': self.locked_course_label,
+            'lockedIntroLabel': self.locked_intro_label,
+            'lockedCommentLabel': self.locked_comment_label,
         }
 
 
@@ -175,6 +239,14 @@ class FeedbackXBlock(XBlock):
         self.post_url = data['postUrl']
         self.max_score = unicode(data['maxScore'])
         self.locked_option = data['lock']
+        self.skills_label = unicode(data['skillsLabel'])
+        self.course_label = unicode(data['courseLabel'])
+        self.intro_label = unicode(data['introLabel'])
+        self.comment_label = unicode(data['commentLabel'])
+        self.locked_skills_label = unicode(data['lockedSkillsLabel'])
+        self.locked_course_label = unicode(data['lockedCourseLabel'])
+        self.locked_intro_label = unicode(data['lockedIntroLabel'])
+        self.locked_comment_label = unicode(data['lockedCommentLabel'])
 
         return {
             'result': 'success',
