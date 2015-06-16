@@ -1,4 +1,4 @@
-# xblock-ionisx-feedback
+# xblock-feedback
 
 > Course component (Open edX XBlock) that asks for user feedback.
 
