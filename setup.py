@@ -31,7 +31,7 @@ setup(
     ],
     entry_points={
         'xblock.v1': [
-            'feedback = feedback:FeedbackXBlock',
+            'feedback = feedback.feedback:FeedbackXBlock',
         ]
     },
     package_data=package_data("feedback", "static"),
