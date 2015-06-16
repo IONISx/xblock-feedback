@@ -8,7 +8,7 @@ module.exports = function (grunt) {
                 files: {
                     src: [
                         'Gruntfile.js',
-                        'feedback/static/js/**/*.js'
+                        'feedback/static/js/src/**/*.js'
                     ]
                 }
             }
@@ -24,7 +24,7 @@ module.exports = function (grunt) {
                 files: {
                     src: [
                         'Gruntfile.js',
-                        'feedback/static/js/**/*.js'
+                        'feedback/static/js/src/**/*.js'
                     ]
                 }
             }

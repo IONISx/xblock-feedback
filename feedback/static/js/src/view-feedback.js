@@ -21,60 +21,39 @@ function FeedbackXBlockStudent(runtime, element) {
     }
 
     function hideComment(skillsScore, courseScore, maxScore) {
-        return !((skillsScore > 0 && skillsScore <= maxScore / 2) || (courseScore > 0 && courseScore <= maxScore / 2));
+        return !((skillsScore > 0 && skillsScore <= maxScore / 2) ||
+            (courseScore > 0 && courseScore <= maxScore / 2));
     }
 
     $(function () {
         init();
 
-        var skillsStars = $('.skills .star', element);
+        var skillsRating = $('.skills .xblock-feedback-rating', element);
+        var courseRating = $('.course .xblock-feedback-rating', element);
+        var all = skillsRating.add(courseRating);
 
-        skillsStars.on('click', function () {
-            skillsStars.removeClass('selected');
-            $(this).addClass('selected');
-
-            var handlerUrl = runtime.handlerUrl(element, 'update_scores');
-            var value = $(this).data('value');
-            var data = { skillsScore: value };
-
-            $.post(handlerUrl, JSON.stringify(data)).done(function (response) {
-                if (response.result === 'success') {
-                    $('input[name=skills_score]').val(value);
-                    var skills = response['skills_score'];
-                    var course = response['course_score'];
-                    var max = response['max_score'];
-
-                    $('.comment-feedback', element).toggleClass('hidden',
-                        hideComment(skills, course, max));
-                }
-                else {
-                    runtime.notify('error',  {
-                        title: 'Error : Update failed.',
-                        message: 'An error occured while saving skills score !'
-                    });
-                }
-            });
+        all.rating({
+            glyphicon: false,
+            ratingClass: 'rating-fa',
+            showCaption: false,
+            showClear: false
         });
 
-        var courseStars = $('.course .star', element);
-
-        courseStars.on('click', function () {
-            courseStars.removeClass('selected');
-            $(this).addClass('selected');
+        all.on('rating.change', function () {
+            var data = {
+                skillsScore: skillsRating.val(),
+                courseScore: courseRating.val()
+            };
 
             var handlerUrl = runtime.handlerUrl(element, 'update_scores');
-            var value = $(this).data('value');
-            var data = { courseScore: value };
 
             $.post(handlerUrl, JSON.stringify(data)).done(function (response) {
                 if (response.result === 'success') {
-                    $('input[name=course_score]').val(value);
                     var skills = response['skills_score'];
                     var course = response['course_score'];
                     var max = response['max_score'];
 
-                    $('.comment-feedback', element).toggleClass('hidden',
-                        hideComment(skills, course, max));
+                    $('.comment-feedback', element).toggleClass('hidden', hideComment(skills, course, max));
                 }
                 else {
                     runtime.notify('error',  {
@@ -91,12 +70,12 @@ function FeedbackXBlockStudent(runtime, element) {
             comment.off('submit');
 
             var handlerUrl = runtime.handlerUrl(element, 'save_feedback');
-            var value = $('#xblock-feedback-comment-ta', element).val();
-            var data = { comment: value };
+            var data = {
+                comment: $('textarea[name=comment]', element).val()
+            };
 
             $.post(handlerUrl, JSON.stringify(data)).done(function (response) {
                 if (response.result === 'success') {
-                    $('input[name=comment]').val(value);
                     comment.submit();
                 }
                 else {

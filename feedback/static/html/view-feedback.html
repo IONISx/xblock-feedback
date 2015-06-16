@@ -1,50 +1,47 @@
-<div class="wrapper">
-    <div class="feedback">
-        {% if is_submited and is_locked %}
-            <div >
-                Vous avez déjà voté ! <br />
-                Vos compétences : {{ skills_score }}/{{ max_score }}<br />
-                Ce cours : {{ course_score }}/{{ max_score }} <br />
-            </div>
-        {% else %}
-        <p>
-            Félicitation, vous avez terminé ce cours !
-        </p>
-        <form id="xblock-feedback-form" method="POST" action="{{ post_url }}">
-            <input type="hidden" name="course_id" value="{{ course_id }}" />
-            <input type="hidden" name="user_id" value="{{ user_id }}" />
-            <input type="hidden" name="skills_score" value="{{ skills_score }}" />
-            <input type="hidden" name="course_score" value="{{ course_score }}" />
-            <input type="hidden" name="comment" value="{{ comment }}" />
-            <input type="hidden" name="max_score" value="{{ max_score }}" />
-            <div>
-                <span style="display: inline-block; width: 210px">Evaluez votre niveau de compréhension</span >
-                <div class="rating skills" style="display: inline-block;" >
-                    {% for y in max_score_range %}
-                        {% if y  > 0 %}<span id="xblock-feedback-skills" class="star {% if y  <= skills_score %}selected{% endif %}"
-                        data-value="{{ y }}"></span>{% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-            <div>
-                <span style="display: inline-block; width: 210px">Evaluez la qualité du cours</span>
-                <div class="rating course" style="display: inline-block;" >
-                    {% for y in max_score_range %}
-                        {% if y  > 0 %}<span id="xblock-feedback-course" class="star {% if y  <= course_score %}selected{% endif %}"
-                        data-value="{{ y }}"></span>{% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="comment-feedback hidden" >
-                <p>Vous pouvez ajouter un commentaire : </p>
-                <textarea class="form-control" id="xblock-feedback-comment-ta" rows="3">{{ comment }}</textarea>
-            </div>
-            <div class="xblock-actions">
-                <span class="action-item">
-                    <button class="button action-primary save-button" type="submit">{{ exit_label }}</button>
-                </span>
-            </div>
-        </form>
-        {% endif %}
+<div class="feedback">
+  {% if is_submited and is_locked %}
+    <div>
+      Vous avez déjà voté ! <br />
+      Vos compétences : {{ skills_score }}/{{ max_score }}<br />
+      Ce cours : {{ course_score }}/{{ max_score }} <br />
     </div>
+  {% else %}
+  <h2>
+    Félicitation, vous avez terminé ce cours !
+  </h2>
+  <form id="xblock-feedback-form" method="POST" action="{{ post_url }}">
+    <input type="hidden" name="course_id" value="{{ course_id }}" />
+    <input type="hidden" name="user_id" value="{{ user_id }}" />
+    <input type="hidden" name="max_score" value="{{ max_score }}" />
+    <div class="panel">
+      <div class="panel-heading">
+        <h3>Evaluez votre niveau de compréhension</h3>
+      </div>
+      <div class="panel-body rating skills">
+        <input class="xblock-feedback-rating" name="skills_score" type="number" min=0 max="{{ max_score }}" step="1" data-size="md" data-stars="{{ max_score }}" value="{{ skills_score }}">
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-heading">
+        <h3>Evaluez la qualité du cours</h3>
+      </div>
+      <div class="panel-body rating course">
+        <input class="xblock-feedback-rating" name="course_score" type="number" min=0 max="{{ max_score }}" step="1" data-size="md" data-stars="{{ max_score }}" value="{{ course_score }}">
+      </div>
+    </div>
+    <div class="panel comment-feedback hidden">
+      <div class="panel-heading">
+        <h3>Aidez nous à améliorer votre experience sur nos cours</h3>
+      </div>
+      <div class="panel-body">
+        <textarea class="form-control" name="comment" rows="3" placeholder="Laissez un commentaire !">{{ comment }}</textarea>
+      </div>
+    </div>
+    <div class="xblock-actions">
+      <span class="action-item">
+        <button class="button action-primary save-button" type="submit">{{ exit_label }}</button>
+      </span>
+    </div>
+  </form>
+  {% endif %}
 </div>

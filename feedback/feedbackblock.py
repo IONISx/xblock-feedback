@@ -126,6 +126,7 @@ class FeedbackXBlock(XBlock):
 
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/feedback.css"))
+        frag.add_javascript(self.resource_string("static/js/star-rating.min.js"))
         frag.add_javascript(self.resource_string("static/js/src/view-feedback.js"))
         frag.initialize_js('FeedbackXBlockStudent')
         return frag
