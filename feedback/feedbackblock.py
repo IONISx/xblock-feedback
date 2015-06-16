@@ -6,7 +6,7 @@ from xblock.core import XBlock
 from xblock.fields import Scope, Integer, String, Boolean
 from xblock.fragment import Fragment
 
-from feedback.defaults import DISPLAY_NAME, POST_URL, EXIT_LABEL
+from feedback.defaults import DISPLAY_NAME, POST_URL, EXIT_LABEL, MAX_SCORE
 
 
 @XBlock.wants("settings")
@@ -33,7 +33,7 @@ class FeedbackXBlock(XBlock):
     )
 
     max_score = Integer(
-        default=4,
+        default=MAX_SCORE,
         scope=Scope.content,
         help="Max score / Number of stars.",
     )

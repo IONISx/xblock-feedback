@@ -9,3 +9,5 @@ DISPLAY_NAME = "Feedback"
 POST_URL = '#'
 
 EXIT_LABEL = 'Save and exit'
+
+MAX_SCORE = 5
