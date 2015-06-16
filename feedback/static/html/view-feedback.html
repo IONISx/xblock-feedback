@@ -14,27 +14,27 @@
     <input type="hidden" name="user_id" value="{{ user_id }}" />
     <input type="hidden" name="max_score" value="{{ max_score }}" />
     <div>
-      <div class="panel-heading">
-        Evaluez votre niveau de compréhension
-      </div>
       <div class="panel-body rating skills">
+        <p>
+          Evaluez votre niveau de compréhension
+        </p>
         <input class="xblock-feedback-rating" name="skills_score" type="number" min=0 max="{{ max_score }}" step="1" data-size="sm" data-stars="{{ max_score }}" value="{{ skills_score }}">
       </div>
     </div>
     <div>
-      <div class="panel-heading">
-        Evaluez la qualité du cours
-      </div>
       <div class="panel-body rating course">
+        <p>
+           Evaluez la qualité de ce cours
+        </p>
         <input class="xblock-feedback-rating" name="course_score" type="number" min=0 max="{{ max_score }}" step="1" data-size="sm" data-stars="{{ max_score }}" value="{{ course_score }}">
       </div>
     </div>
     <div class="comment-feedback hidden">
-      <div class="panel-heading">
-        Aidez nous à améliorer votre experience sur nos cours
-      </div>
       <div class="panel-body">
-        <textarea class="form-control" name="comment" rows="3" placeholder="Laissez un commentaire !">{{ comment }}</textarea>
+        <p>
+          Aidez-nous à améliorer votre experience !
+        </p>
+        <textarea class="form-control" name="comment" rows="3" placeholder="Laissez-nous un commentaire !">{{ comment }}</textarea>
       </div>
     </div>
     <div class="action panel-body">
