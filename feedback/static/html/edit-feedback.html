@@ -8,17 +8,18 @@
           <i class="fa fa-undo"></i>
         </button>
       </div>
-      <span class="tip setting-help">Example: Save and exit.</span>
+      <span class="tip setting-help">If this field is empty, it will use a default value set by the platform’s administrator.</span>
     </li>
     <li class="field comp-setting-entry">
       <div class="wrapper-comp-setting">
-        <label class="label setting-label" for="xblock-feedback-post-url">Target POST URL : </label>
+        <label class="label setting-label" for="xblock-feedback-post-url">Target POST URL:</label>
         <input class="label setting-input"  type="text" id="xblock-feedback-post-url" value="{{ post_url }}" required>
       </div>
+      <span class="tip setting-help">If this field is empty, it will use a default value set by the platform’s administrator.</span>
     </li>
     <li class="field comp-setting-entry">
       <div class="wrapper-comp-setting">
-        <label class="label setting-label" for="xblock-feedback-max-score">Max Score (number of stars) : </label>
+        <label class="label setting-label" for="xblock-feedback-max-score">Max Score (number of stars):</label>
         <input class="label setting-input" type="number" min="3" max="10" step="1" id="xblock-feedback-max-score" value="{{ max_score }}" required>
       </div>
     </li>

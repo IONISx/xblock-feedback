@@ -18,7 +18,7 @@
             <input type="hidden" name="comment" value="{{ comment }}" />
             <input type="hidden" name="max_score" value="{{ max_score }}" />
             <div>
-                <span style="display: inline-block; width: 210px">Evaluez vos compétences :</span >
+                <span style="display: inline-block; width: 210px">Evaluez votre niveau de compréhension</span >
                 <div class="rating skills" style="display: inline-block;" >
                     {% for y in max_score_range %}
                         {% if y  > 0 %}<span id="xblock-feedback-skills" class="star {% if y  <= skills_score %}selected{% endif %}"
@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div>
-                <span style="display: inline-block; width: 210px">Evaluez la qualité du cours :</span>
+                <span style="display: inline-block; width: 210px">Evaluez la qualité du cours</span>
                 <div class="rating course" style="display: inline-block;" >
                     {% for y in max_score_range %}
                         {% if y  > 0 %}<span id="xblock-feedback-course" class="star {% if y  <= course_score %}selected{% endif %}"
@@ -37,7 +37,7 @@
             </div>
             <div class="comment-feedback hidden" >
                 <p>Vous pouvez ajouter un commentaire : </p>
-                <textarea class="form-control" id="xblock-feedback-comment-ta" rows="3" >{{ comment }}</textarea>
+                <textarea class="form-control" id="xblock-feedback-comment-ta" rows="3">{{ comment }}</textarea>
             </div>
             <div class="xblock-actions">
                 <span class="action-item">
