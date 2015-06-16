@@ -22,7 +22,7 @@ def package_data(pkg, roots):
 
 setup(
     name='feedback-xblock',
-    version='0.1',
+    version='0.1.0',
     description='Course component (Open edX XBlock) that asks for user feedback',
     packages=['feedback'],
     author='IONISx',
@@ -31,7 +31,7 @@ setup(
     ],
     entry_points={
         'xblock.v1': [
-            'feedback = feedback.feedback:FeedbackXBlock',
+            'feedback = feedback.feedbackblock:FeedbackXBlock',
         ]
     },
     package_data=package_data("feedback", "static"),

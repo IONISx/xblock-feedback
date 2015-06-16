@@ -1,25 +1,28 @@
-<div class="wrapper-comp-settings is-active editor-with-buttons" id="settings-tab">
+<div id="settings-tab" class="wrapper-comp-settings editor-with-buttons is-active">
   <ul class="list-input settings-list">
-    <li class="field comp-setting-entry is-set">
+    <li class="field comp-setting-entry">
       <div class="wrapper-comp-setting">
-        <label class="label setting-label" for="xblock-feedback-exit-label">Text for the save and quit button : </label><br>
+        <label class="label setting-label" for="xblock-feedback-exit-label">Text for the save and quit button : </label>
         <input class="input setting-input" type="text" id="xblock-feedback-exit-label" value="{{ exit_label }}" required>
+        <button class="action setting-clear inactive" type="button" name="setting-clear" value="Clear" data-tooltip="Clear">
+          <i class="fa fa-undo"></i>
+        </button>
       </div>
       <span class="tip setting-help">Example: Save and exit.</span>
     </li>
-    <li class="field comp-setting-entry is-set">
+    <li class="field comp-setting-entry">
       <div class="wrapper-comp-setting">
-        <label class="label setting-label" for="xblock-feedback-post-url">Target POST URL : </label><br>
+        <label class="label setting-label" for="xblock-feedback-post-url">Target POST URL : </label>
         <input class="label setting-input"  type="text" id="xblock-feedback-post-url" value="{{ post_url }}" required>
       </div>
     </li>
-    <li class="field comp-setting-entry is-set">
+    <li class="field comp-setting-entry">
       <div class="wrapper-comp-setting">
-        <label class="label setting-label" for="xblock-feedback-max-score">Max Score (number of stars) : </label><br>
+        <label class="label setting-label" for="xblock-feedback-max-score">Max Score (number of stars) : </label>
         <input class="label setting-input" type="number" min="3" max="10" step="1" id="xblock-feedback-max-score" value="{{ max_score }}" required>
       </div>
     </li>
-    <li class="field comp-setting-entry  is-set">
+    <li class="field comp-setting-entry">
       <div class="wrapper-comp-setting">
         <label class="label setting-label" for="xblock-feedback-lock-when-voted">Lock the form when vote as been submited</label>
         <select class="input setting-input" id="xblock-feedback-lock-when-voted" name="xblock-feedback-lock-when-voted">

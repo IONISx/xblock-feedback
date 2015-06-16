@@ -1,3 +1,4 @@
+import logging
 import pkg_resources
 
 from django.template import Context, Template
@@ -6,8 +7,21 @@ from xblock.core import XBlock
 from xblock.fields import Scope, Integer, String, Boolean
 from xblock.fragment import Fragment
 
+from feedback.defaults import DISPLAY_NAME, POST_URL, EXIT_LABEL
 
+log = logging.getLogger(__name__)
+
+
+@XBlock.wants("settings")
 class FeedbackXBlock(XBlock):
+    block_settings_key = 'feedback'
+
+    display_name = String(
+        default=DISPLAY_NAME,
+        display_name="Display Name",
+        scope=Scope.settings,
+        help="This name appears in the horizontal navigation at the top of the page."
+    )
 
     skills_score = Integer(
         default=0,
@@ -34,13 +48,13 @@ class FeedbackXBlock(XBlock):
     )
 
     post_url = String(
-        default="#",
+        default="",
         scope=Scope.content,
         help="Post action url.",
     )
 
     exit_label = String(
-        default=u"Save and exit",
+        default="",
         scope=Scope.content,
         help="Label for button exit.",
     )
@@ -56,9 +70,6 @@ class FeedbackXBlock(XBlock):
         scope=Scope.content,
         help="True when form already fulfilled.",
     )
-    '''
-    Util functions
-    '''
 
     def resource_string(self, path):
         """Handy helper for getting resources from our kit."""
@@ -84,14 +95,30 @@ class FeedbackXBlock(XBlock):
         The primary view of the XBlock, shown to students
         when viewing courses.
         """
+
+        post_url = self.post_url
+        exit_label = self.exit_label
+
+        settings_service = self.runtime.service(self, 'settings')
+        if settings_service:
+            settings = settings_service.get_settings_bucket(self)
+
+            if post_url == "":
+                s = settings.get('post_url')
+                post_url = s if s else POST_URL
+
+            if exit_label == "":
+                s = settings.get('exit_label')
+                exit_label = s if s else EXIT_LABEL
+
         context = {
             'skills_score': self.skills_score,
             'course_score': self.course_score,
             'comment': self.comment,
-            'post_url': self.post_url,
+            'post_url': post_url,
+            'exit_label': exit_label,
             'max_score_range': list(reversed(range(self.max_score + 1))),
             'max_score': self.max_score,
-            'exit_label': self.exit_label,
             'user_id': self.runtime.user_id,
             'course_id': unicode(self.runtime.course_id),
             'is_submited': self.is_submited,
@@ -111,6 +138,7 @@ class FeedbackXBlock(XBlock):
         The secondary view of the XBlock, shown to teachers
         when editing the XBlock.
         """
+
         context = {
             'post_url': self.post_url,
             'max_score': self.max_score,
