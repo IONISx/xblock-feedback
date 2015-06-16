@@ -1,4 +1,3 @@
-import logging
 import pkg_resources
 
 from django.template import Context, Template
@@ -8,8 +7,6 @@ from xblock.fields import Scope, Integer, String, Boolean
 from xblock.fragment import Fragment
 
 from feedback.defaults import DISPLAY_NAME, POST_URL, EXIT_LABEL
-
-log = logging.getLogger(__name__)
 
 
 @XBlock.wants("settings")
