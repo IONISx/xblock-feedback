@@ -1,5 +1,7 @@
 # xblock-feedback
 
+[![Build Status](https://circleci.com/gh/IONISx/xblock-feedback.svg?style=svg)](https://circleci.com/gh/IONISx/xblock-feedback)
+
 > Course component (Open edX XBlock) that asks for user feedback.
 
 ## Development environment
