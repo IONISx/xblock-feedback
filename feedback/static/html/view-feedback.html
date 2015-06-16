@@ -9,38 +9,36 @@
   <h2>
     Félicitation, vous avez terminé ce cours !
   </h2>
-  <form id="xblock-feedback-form" method="POST" action="{{ post_url }}">
+  <form method="POST" action="{{ post_url }}">
     <input type="hidden" name="course_id" value="{{ course_id }}" />
     <input type="hidden" name="user_id" value="{{ user_id }}" />
     <input type="hidden" name="max_score" value="{{ max_score }}" />
-    <div class="panel">
+    <div>
       <div class="panel-heading">
-        <h3>Evaluez votre niveau de compréhension</h3>
+        Evaluez votre niveau de compréhension
       </div>
       <div class="panel-body rating skills">
-        <input class="xblock-feedback-rating" name="skills_score" type="number" min=0 max="{{ max_score }}" step="1" data-size="md" data-stars="{{ max_score }}" value="{{ skills_score }}">
+        <input class="xblock-feedback-rating" name="skills_score" type="number" min=0 max="{{ max_score }}" step="1" data-size="sm" data-stars="{{ max_score }}" value="{{ skills_score }}">
       </div>
     </div>
-    <div class="panel">
+    <div>
       <div class="panel-heading">
-        <h3>Evaluez la qualité du cours</h3>
+        Evaluez la qualité du cours
       </div>
       <div class="panel-body rating course">
-        <input class="xblock-feedback-rating" name="course_score" type="number" min=0 max="{{ max_score }}" step="1" data-size="md" data-stars="{{ max_score }}" value="{{ course_score }}">
+        <input class="xblock-feedback-rating" name="course_score" type="number" min=0 max="{{ max_score }}" step="1" data-size="sm" data-stars="{{ max_score }}" value="{{ course_score }}">
       </div>
     </div>
-    <div class="panel comment-feedback hidden">
+    <div class="comment-feedback hidden">
       <div class="panel-heading">
-        <h3>Aidez nous à améliorer votre experience sur nos cours</h3>
+        Aidez nous à améliorer votre experience sur nos cours
       </div>
       <div class="panel-body">
         <textarea class="form-control" name="comment" rows="3" placeholder="Laissez un commentaire !">{{ comment }}</textarea>
       </div>
     </div>
-    <div class="xblock-actions">
-      <span class="action-item">
-        <button class="button action-primary save-button" type="submit">{{ exit_label }}</button>
-      </span>
+    <div class="action panel-body">
+      <button class="btn btn-block btn-lg" type="submit">{{ exit_label }}</button>
     </div>
   </form>
   {% endif %}

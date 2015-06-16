@@ -30,6 +30,7 @@ function FeedbackXBlockStudent(runtime, element) {
 
         var skillsRating = $('.skills .xblock-feedback-rating', element);
         var courseRating = $('.course .xblock-feedback-rating', element);
+        var maxScore = $('input[name=max_score]', element);
         var all = skillsRating.add(courseRating);
 
         all.rating({
@@ -40,22 +41,22 @@ function FeedbackXBlockStudent(runtime, element) {
         });
 
         all.on('rating.change', function () {
-            var data = {
-                skillsScore: skillsRating.val(),
-                courseScore: courseRating.val()
+            var score = {
+                skills: skillsRating.val(),
+                course: courseRating.val(),
+                max: maxScore.val()
             };
 
-            var handlerUrl = runtime.handlerUrl(element, 'update_scores');
+            $('.comment-feedback', element).toggleClass(
+                'hidden',
+                hideComment(score.skills, score.course, score.max)
+            );
 
-            $.post(handlerUrl, JSON.stringify(data)).done(function (response) {
-                if (response.result === 'success') {
-                    var skills = response['skills_score'];
-                    var course = response['course_score'];
-                    var max = response['max_score'];
-
-                    $('.comment-feedback', element).toggleClass('hidden', hideComment(skills, course, max));
-                }
-                else {
+            $.post(runtime.handlerUrl(element, 'update_scores'), JSON.stringify({
+                skillsScore: score.skill,
+                courseScore: score.course
+            })).done(function (response) {
+                if (response.result !== 'success') {
                     runtime.notify('error',  {
                         title: 'Error : Update failed.',
                         message: 'An error occured while saving course score !'
@@ -64,10 +65,10 @@ function FeedbackXBlockStudent(runtime, element) {
             });
         });
 
-        var comment = $('#xblock-feedback-form');
-        comment.on('submit', function (e) {
+        var form = $('form', element);
+        form.on('submit', function (e) {
             e.preventDefault();
-            comment.off('submit');
+            form.off('submit');
 
             var handlerUrl = runtime.handlerUrl(element, 'save_feedback');
             var data = {
@@ -76,7 +77,7 @@ function FeedbackXBlockStudent(runtime, element) {
 
             $.post(handlerUrl, JSON.stringify(data)).done(function (response) {
                 if (response.result === 'success') {
-                    comment.submit();
+                    form.submit();
                 }
                 else {
                     runtime.notify('error',  {
