@@ -1,9 +1,11 @@
 import pkg_resources
-from django.template import Context, Template, Library
+
+from django.template import Context, Template
 
 from xblock.core import XBlock
-from xblock.fields import Scope, Integer, List, String, Boolean
+from xblock.fields import Scope, Integer, String, Boolean
 from xblock.fragment import Fragment
+
 
 class FeedbackXBlock(XBlock):
 
