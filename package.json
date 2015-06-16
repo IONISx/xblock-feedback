@@ -1,6 +1,6 @@
 {
   "name": "xblock-ionisx-feedback",
-  "description": "",
+  "description": "Course component (Open edX XBlock) that asks for user feedback",
   "private": true,
   "scripts": {
     "test": "grunt test"

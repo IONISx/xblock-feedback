@@ -23,7 +23,7 @@ def package_data(pkg, roots):
 setup(
     name='feedback-xblock',
     version='0.1',
-    description='Feedback XBlock.',   # TODO: write a better description.
+    description='Course component (Open edX XBlock) that asks for user feedback',
     packages=['feedback'],
     author='IONISx',
     install_requires=[
