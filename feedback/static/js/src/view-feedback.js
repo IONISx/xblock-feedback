@@ -53,7 +53,7 @@ function FeedbackXBlockStudent(runtime, element) {
             );
 
             $.post(runtime.handlerUrl(element, 'update_scores'), JSON.stringify({
-                skillsScore: score.skill,
+                skillsScore: score.skills,
                 courseScore: score.course
             })).done(function (response) {
                 if (response.result !== 'success') {
