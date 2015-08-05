@@ -7,7 +7,7 @@
     </div>
   {% else %}
   <h2>
-    Félicitation, vous avez terminé ce cours !
+    {{ title }}
   </h2>
   <form method="POST" action="{{ post_url }}">
     <input type="hidden" name="course_id" value="{{ course_id }}" />

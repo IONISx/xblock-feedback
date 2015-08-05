@@ -6,7 +6,7 @@ from xblock.core import XBlock
 from xblock.fields import Scope, Integer, String, Boolean
 from xblock.fragment import Fragment
 
-from feedback.defaults import DISPLAY_NAME, POST_URL, EXIT_LABEL, MAX_SCORE
+from feedback.defaults import DISPLAY_NAME, POST_URL, EXIT_LABEL, MAX_SCORE, TITLE
 
 
 @XBlock.wants("settings")
@@ -56,6 +56,12 @@ class FeedbackXBlock(XBlock):
         help="Label for button exit.",
     )
 
+    title = String(
+        default="",
+        scope=Scope.content,
+        help="Label for text at the end of the class.",
+    )
+
     is_submited = Boolean(
         default=False,
         scope=Scope.user_state,
@@ -95,6 +101,7 @@ class FeedbackXBlock(XBlock):
 
         post_url = self.post_url
         exit_label = self.exit_label
+        title = self.title
 
         settings_service = self.runtime.service(self, 'settings')
         if settings_service:
@@ -108,6 +115,10 @@ class FeedbackXBlock(XBlock):
                 s = settings.get('exit_label')
                 exit_label = s if s else EXIT_LABEL
 
+            if title == "":
+                s = settings.get('title')
+                title = s if s else TITLE
+
         context = {
             'skills_score': self.skills_score,
             'course_score': self.course_score,
@@ -119,6 +130,7 @@ class FeedbackXBlock(XBlock):
             'course_id': unicode(self.runtime.course_id),
             'is_submited': self.is_submited,
             'is_locked': self.is_locked,
+            'title': title,
         }
 
         html = self.render_template("static/html/view-feedback.html", context)
@@ -141,6 +153,7 @@ class FeedbackXBlock(XBlock):
             'max_score': self.max_score,
             'exit_label': self.exit_label,
             'is_locked': self.is_locked,
+            'title': self.title,
         }
 
         html = self.render_template("static/html/edit-feedback.html", context)
@@ -201,6 +214,7 @@ class FeedbackXBlock(XBlock):
         self.is_locked = data['lock']
         self.exit_label = unicode(data['exitLabel'])
         self.max_score = unicode(data['maxScore'])
+        self.title = unicode(data['title'])
 
         return {
             'result': 'success',

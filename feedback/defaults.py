@@ -6,8 +6,10 @@ Default data initializations for the block
 
 DISPLAY_NAME = "Feedback"
 
-POST_URL = '#'
+POST_URL = "#"
 
-EXIT_LABEL = 'Save and exit'
+EXIT_LABEL = "Save and exit"
+
+TITLE = "Congratulation, you finished this course!"
 
 MAX_SCORE = 5
